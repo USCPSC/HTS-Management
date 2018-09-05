@@ -1,0 +1,27 @@
+<div id="reference_popup_div" class="container  modal-dialog" ng-switch on="exam._editMode_">
+	
+	<!-- Details Tab Start -->
+	<div class="row">
+
+		<div class="col-md-12" ng-switch-when="EDIT">
+				<div ng-include="'./examlog/edit/exam_reference_edit.html'"></div>
+		</div>
+	
+		<div class="col-md-12" ng-switch-when="CREATE">
+			<div ng-include="'./examlog/edit/exam_reference_edit.html'"></div>
+		</div>
+	</div> <!-- Details Tab End; modal-content-->
+
+</div> <!-- reference_popup_div  -->
+
+
+<script>
+	// use jQuery-UI to make the popup resizable and draggable
+	$("#reference_popup_div").resizable();
+	$("#reference_popup_div").draggable({
+	    handle: ".popup-header"
+	});
+</script>
+
+
+		

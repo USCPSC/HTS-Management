@@ -1,0 +1,37 @@
+<mat-card class="dashboard-card" fxFlex="auto" fxLayout="column">
+  <mat-card-content fxFlex="auto" fxLayout="column"
+                    fxLayoutAlign="center center">
+    <files-drop fxFlex="1 1 100%"
+                fxFlexFill
+                fxLayout="row"
+                (filesSelect)="filesSelect($event)"
+                configId="hts-config">
+      <div fxFlex="1 1 100%"
+           fxLayout="row wrap"
+           fxLayoutAlign="center center"
+           class="drop">
+        <span class="upload-txt">Drop file here or click to</span>
+        <!--<button mat-raised-button color="primary">-->
+        <files-click class="upload-btn" configId="hts-config" (filesSelect)="filesSelect($event)">
+          <span>Upload file...</span>
+        </files-click>
+        <br>
+        <br>
+        <!--</button>-->
+        <div fxFlex="1 1 100%"
+             fxLayout="row wrap"
+             fxLayoutAlign="center center"
+              class="upload-txt">
+          Only {{htsConfig.acceptExtensions}} files are acceptable
+          with size no greater then {{formatFileSize(htsConfig.maxFileSize)}} bytes.
+        </div>
+        <div *ngIf="selectedFiles && selectedFiles.status > 0"
+             fxFlex="1 1 100%"
+             fxLayoutAlign="center center"
+             fxLayout="row">
+          {{errorMessage()}}
+        </div>
+      </div>
+    </files-drop>
+  </mat-card-content>
+</mat-card>

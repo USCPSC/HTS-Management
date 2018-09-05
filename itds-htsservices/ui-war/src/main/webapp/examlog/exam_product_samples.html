@@ -1,0 +1,60 @@
+<div ng-controller="sampleTableController" class="row lr15" ng-switch on="exam._editMode_">
+	<div class="col-md-12" ng-switch-when="EDIT" >
+	  <div ng-include="'./examlog/edit/exam_product_samples_edit.html'"></div>
+	</div> 
+	<div class="col-md-12" ng-switch-when="CREATE" >
+	  <div ng-include="'./examlog/edit/exam_product_samples_edit.html'"></div>
+	</div> 
+	<div class="col-md-12" ng-switch-when="VIEW">
+
+<!-- Products/Samples Tab Start -->
+<div class="row">
+	<div class="col-md-12 panel">
+		<div class="panel-body">
+		<!--  begin products/samples -->
+			<header>
+				<h4 ng-show="false">Products/Samples</h4>
+			</header>
+			<table class="table" >
+				<tr>
+					<th>Product Description</th>
+					<th>Model #</th>
+					<th># Products Screened</th>
+					<th>Disposition</th>
+					<th>Sample Number</th>
+				</tr>
+
+				<tr ng-if="((sample && sampleDetail.selectedSample)  && sampleDetail.selectedIndex>0)">
+					<td colspan="5" >
+						<a href="" ng-show="sampleDetail.isHideAboveRows" ng-click="sampleDetail.hideAboveRows(false)">{{sampleDetail.selectedIndex}} record(s) hidden</a>
+						<a href="" ng-show="!sampleDetail.isHideAboveRows" ng-click="sampleDetail.hideAboveRows(true)">Hide {{sampleDetail.selectedIndex}} record(s) below</a>
+					</td>
+				</tr>
+
+				<tr ng-repeat="sample_i in exam.examSamples" ng-hide="sampleDetail.isRowHidden(sample_i, $index)">
+					<td>{{ sample_i.productDescription }}
+ 						<div style="display: inline-block; float:right; right: 2px;">
+ 							<a href="" ><img src="./img/view.png" style="width: 20px; vertical-align: middle" data-toggle="tooltip" title="View Detail"
+								ng-click="productSampleAction.performProductSampleAction('View', sample_i,$index);"></a>
+							<a href="" ><img src="./img/link.png" style="width: 20px; vertical-align: middle" data-toggle="tooltip" title="Link to IFS"
+								ng-click="productSampleAction.performProductSampleAction('ViewIFS', sample_i,$index);"></a>
+						</div>
+					</td>
+					<td>{{ sample_i.itemModel }}</td>
+					<td>{{ sample_i.numberProductsScreened }}</td>
+					<td>{{ sample_i.dispositionDescription }}</td>
+					<td nowrap><span ng-show= "!sample_i.sampleNumber" style="color: lightgray;">&lt;No Sample Number&gt;</span>{{ sample_i.sampleNumber }}</td>
+				</tr>
+
+			</table>
+		</div>
+		<!--  end products/samples -->
+		
+		
+		</div>
+	</div>
+
+</div>
+
+<!-- Products/Samples Tab End -->
+</div>

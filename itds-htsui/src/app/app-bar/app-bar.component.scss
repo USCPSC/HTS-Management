@@ -1,0 +1,71 @@
+.mat-toolbar-container {
+  margin: 16px;
+  text-align: center;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 2px lightgray;
+  //border-color: #e7e7e7;
+  border-radius: 2px;
+  height: 50px;
+  display: flex;
+  max-width: 100%;
+}
+
+#bar-menu {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#menu1 {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.csvmenu {
+  margin-right: 8px;
+  color: #222d63;
+}
+
+#cpsc-agency-title,#itds-app-title {
+  padding-left: 5px;
+  padding-right: 10px;
+  font-size: 24px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+#inbox-img,#exam-img,
+#rule-engine-img,
+#metrics-img,
+#profile-img,
+#service-img,
+#syst-event-img,
+#syst-setting-img,
+#logout-img {
+  max-width: 32px;
+  max-height: 32px;
+  padding-right: 8px;
+  vertical-align: middle;
+}
+.user-id {
+  padding-left: 8px;
+  padding-right: 8px;
+
+}
+#cpsc-agency-title {
+  color: #222d63;
+}
+
+.mat-menu-item {
+  max-width: 100%;
+  max-height: 100%;
+}

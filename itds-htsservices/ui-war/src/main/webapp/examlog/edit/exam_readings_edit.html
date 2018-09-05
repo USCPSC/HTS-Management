@@ -1,0 +1,71 @@
+<!--  begin readings details -->
+<div class="popup-header">
+<!-- 		<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="cancel();">&times;</button> -->
+		<button type="button" class="close" data-dismiss="myModal" aria-hidden="true"
+				ng-show="!(sampleCopy._flag=='c' || sampleCopy._flag=='u') && showContents=='READING'"
+				ng-click="showReadings(false);">&times;</button>
+		<h4 class="modal-title">Product/Sample Readings</h4>
+		
+</div>
+
+<div class="panel-body" style="max-height:50;overflow-y:scroll;">
+	<!--  begin products/readings -->
+	<div id="sample-item-div" ng-hide="examlogService.noReadingItem=='true'"  
+			ng-repeat="item_i in sample.readingItems">
+
+
+		<table class="table" style = "border: 0px;background-color: #FFF">
+			<tr ng-show="item_i._flag!='d'">
+				<th colspan="2" style="width:80%; text-align: center;"><strong>Sample Reading Item id: {{item_i.id}}</strong></th>
+				<th style="width:20%; text-align: right;"><a href=""><img src="./img/delete.png" style="width: 16px; vertical-align: middle" data-toggle="tooltip" title="Delete"
+								ng-click="perform('DeleteReadingItem', item_i, $index);"></a></th>
+<!-- 				<th style="width: 175px; text-align: center;"><strong>Reading Number: {{item_i.readingNo}}</strong></th> -->
+<!-- 				<th style="width: 570px; text-align: center;"><strong>Reading Location:</strong><br/> -->
+<!-- 					<strong>{{item_i.location}}</strong> -->
+<!-- 					<input type="text" required placeholder="{{item_i.location}}" ng-model="item_i.location" -->
+<!-- 						style="text-align: left; width: 100px;" /> -->
+<!-- 				</th> -->
+			</tr>
+			<tr ng-show="item_i._flag!='d'">
+				<th style="width: 175px; text-align: center;">Reading Type</th>
+				<th style="width: 570px; text-align: center;">Reading Type Description</th>
+				<th style="width: 155px; text-align: center;">Value</th>
+			</tr>
+			<tr ng-show="item_i._flag!='d'" ng-repeat="reading_i in item_i.readings" id="sample-reading-tr">
+				<td style="width: 175px; text-align: left;" id="sample-reading-type-td" nowrap>{{ reading_i.readingType }}</td>
+				<td style="width: 570px; text-align: left;" id="sample-reading-type-desc-td">{{ reading_i.readingTypeDescription }}</td>
+				<td style="width: 155px; text-align: center;" id="sample-reading-value-td">
+					<input type="number" min="0" ng-pattern="" required placeholder="{{reading_i.readingValue}}" ng-model="reading_i.readingValue"
+						ng-keyup="roundReadingValue(reading_i);"
+						style="text-align: right; width: 100px;" />
+				</td>
+			</tr>
+		</table>
+		
+		
+	</div>
+<!-- 	<div ng-show="examlogService.addReadingItem=='true'" id="new-sample-item-div"> -->
+<!-- 		<form ng-submit="//addSample ????? ScanItem(form)"> -->
+<!-- 			<table class="table" style = "border: 0px;"> -->
+<!-- 				<tr id="new-sample-item-location"><th>Sample Reading Item location: </th><td><input type="text" required placeholder="Item Location" ng-model="form.item.location" /></td></tr> -->
+<!-- 				<tr id="new-sample-reading-xrf-lead"><th>Sample Lead Reading: </th><td><input type="text" required placeholder="Lead Reading" ng-model="form.item.reading.XRF_lead" /></td></tr> -->
+<!-- 				<tr id="new-sample-reading-xrf-cadmium"><th>Sample Cadmium Reading: </th><td><input type="text" required placeholder="Cadmium Reading" ng-model="form.item.reading.XRF_cadmium" /></td></tr> -->
+<!-- 				<tr id="new-sample-reading-xrf-other"><th>Sample Other Reading: </th><td><input type="text" required placeholder="Other Reading" ng-model="form.item.reading.XRF_other" /></td></tr> -->
+<!-- 				<tr id="new-sample-reading-ftir"><th>Sample FTIR Reading: </th><td><input type="text" required placeholder="FTIR" ng-model="form.item.reading.FTIR" /></td></tr> -->
+<!-- 			</table> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+</div>
+		
+<div class="modal-footer" style="text-align: left">
+	<div class="row">
+		<div class="col-sm-12">
+			<button type="button" class="btn btn-primary" ng-show="showContents=='READING'" 
+				ng-click="perform('AddReadingItem'); showReadings(true);">Add New</button>
+			<button type="button" class="btn btn-primary" ng-show="showContents=='READING'"
+				ng-click="perform('SaveCloseReadingItem'); showReadings(false); ok();">Save & Close</button>
+			<button type="button" class="btn btn-primary" ng-show="showContents=='READING'"
+				ng-click="showReadings(false);">Return to Product/Sample</button>
+		</div>
+	</div>
+</div>

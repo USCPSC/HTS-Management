@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>
+  <mat-icon color="accent">report_problem</mat-icon>
+  Files are being downloaded
+</h2>
+<mat-dialog-content fxLayout="row">
+  <div fxLayout="column" class="reports-container" style="align-items: center; overflow: hidden;">
+    <p fxLayout="column">
+      <span *ngFor="let txt of data">
+        {{txt}}
+      </span>
+    </p>
+    <hr>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>
+  </div>
+</mat-dialog-content>

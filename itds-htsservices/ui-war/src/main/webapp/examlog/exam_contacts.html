@@ -1,0 +1,45 @@
+<div ng-controller="contactTableController" class="row lr15" ng-switch on="exam._editMode_">
+	<div class="col-md-12" ng-switch-when="EDIT" >
+	  <div ng-include="'./examlog/edit/exam_contacts_edit.html'"></div>
+	</div> 
+	<div class="col-md-12" ng-switch-when="CREATE" >
+	  <div ng-include="'./examlog/edit/exam_contacts_edit.html'"></div>
+	</div> 
+	<div class="col-md-12" ng-switch-when="VIEW">
+
+<!-- Details Tab Start -->
+<div class="row">
+	<div class="col-md-12 panel">
+		<div class="panel-body">
+			<header>
+				<h4 ng-show="false">Contacts</h4>
+			</header>
+			<table class="table">
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Phone</th>
+					<th>Fax</th>
+					<th>E-mail</th>
+				</tr>
+
+				<tr ng-repeat-start="contact in exam.examContacts">
+					<td>{{ contact.name }}</td>
+					<td>{{ contact.contactTypeName }}</td>
+					<td>{{ contact.phoneNumber }}</td>
+					<td>{{ contact.fax }}</td>
+					<td>{{ contact.email }}</td>
+				</tr>
+
+				<tr ng-repeat-end ng-hide="true">
+					<td colspan="5"></td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<!-- Details Tab End -->
+</div>

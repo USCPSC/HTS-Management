@@ -1,0 +1,293 @@
+<h4>Shared Services</h4>
+
+<div class="ss-page">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Email</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Recipient</label>
+                            <input type="text" class="form-control" ng-model="email.toEmailAddress"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" ng-model="email.subject"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Body</label>
+                            <textarea class="form-control" ng-model="email.body"></textarea>
+                        </div>
+                        <button type="submit" class= "btn btn-default" ng-click="sendEmail()">Send</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendWorkflowEmail()">Workflow</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendExisMapEmail()">Exis Map</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendNonExisMapEmail()">Non Exis Map</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendOverrideMapEmail()">Override Map</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendAgingSamplesEmail()">Aging Samples</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendCBPHoldEmail()">CBP Hold</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendStaleEntriesEmail()">Stale Entry</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendRedFlagAlertEmail()">Red Flag</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendFieldStaffEmail()">Field Staff</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendConditionalReleaseEmail()">Conditional Release</button>
+                        <button type="button" class= "btn btn-default" ng-click="sendClearHQREmail()">Clear HQ Release</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Log</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label>User ID</label>
+                            <input type="text" class="form-control" ng-model="log.username"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <input type="text" class="form-control" ng-model="log.message"/>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" ng-options="level for level in logLevels" ng-model="log.level"></select>
+                        </div>
+                        <button type="submit" class= "btn btn-default" ng-click="addLog()">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">PDF Download</div>
+                <div class="panel-body">
+                    <form>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Form Type</label>
+                                    <select class="form-control" ng-options="formType for formType in formTypes" ng-model="pdfDto.formType">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>From Address</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.fromAddress"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Individual Name</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.individualName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Individual Title</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.individualTitle"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Firm Name</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.firmName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Firm Address</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.firmAddress"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Entry Number</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.entryNumber"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Importer Name</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.importerName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Importer Address</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.importerAddress"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Officer Name</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.officerName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Action Requested</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.actionRequested"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>To Port</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.toPort"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>To Attn</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.toAttn"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>From Office</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.fromOffice"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Products</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.products"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Samples</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.samples"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Model Items</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.modelItems"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Consignee Name</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.consigneeName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Consignee Address</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.consigneeAddress"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Invoice Num</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.invoiceNum"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Port Of Entry</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.portOfEntry"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Examination Site</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.examinationSite"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Importer Number</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.importerNumber"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Program Operation</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.programOperation"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Customs Broker</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.customsBroker"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Customs Broker Address</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.customsBrokerAddress"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Manufacturer Number</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.manufacturerNumber"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Country Of Origin</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.countryOfOrigin"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Addl Action Requested</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.addlActionRequested"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Statute</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.statute"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Comments To CBP</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.commentsToCbp"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Distribution CC</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.distributionCC"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Officer Title</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.officerTitle"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Officer Phone Number</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.officerPhoneNumber"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Officer Fax</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.officerFax"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Officer Email</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.officerEmail"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Storage Location</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.storageLocation"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>HTS Number(s)</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.htsNumbers"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Importer Fax or Email</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.importerEmail"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Broker Phone</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.customsBrokerPhone"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Broker Fax or Email</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.customsBrokerEmail"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>CBP Fax Number</label>
+                                    <input type="text" class="form-control" ng-model="pdfDto.cbpFax"/>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class= "btn btn-default" ng-click="getPdf()">Download</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Audit</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label>User ID</label>
+                            <input type="text" class="form-control" ng-model="audit.principal"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Event Type</label>
+                            <select class="form-control" ng-options="type for type in eventTypes" ng-model="audit.eventType"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Data Message</label>
+                            <textarea class="form-control" ng-model="audit.dataMessage"></textarea>
+                        </div>
+                        <button type="submit" class= "btn btn-default" ng-click="addAudit()">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default audits-panel">
+                <div class="panel-heading">Audits</div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="column in dashboard.auditColumns">
+                                <div>{{column.display}}</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="audit in audits">
+                            <td ng-repeat="column in dashboard.auditColumns">{{ column.getValue(audit) }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

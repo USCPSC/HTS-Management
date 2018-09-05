@@ -1,0 +1,83 @@
+<mat-toolbar
+  class="mat-toolbar-container mat-elevation-z5"
+  fxLayout="row wrap"
+  fxFlex="1 1 100%">
+
+  <a mat-icon-button [matMenuTriggerFor]="menu">
+    <img id="bar-menu" src="assets/3_bar_menu_blue.png">
+  </a>
+  <a mat-icon-button [routerLink]="['']">
+    <img id="logo" src="assets/cpsc_logo2.png">
+  </a>
+
+  <span id="cpsc-agency-title">HTS Code Management</span>
+
+  <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button class="csvmenu" [matMenuTriggerFor]="csvmenu">
+      Reports
+      <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <a mat-icon-button [matMenuTriggerFor]="pmenu">
+      <img id="menu1" src="assets/9_point_menu_color.png">
+    </a>
+    <label class="user-id">{{user.user}}</label>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <a [href]="getRamUrl() + 'index.html#/inbox'" mat-menu-item>
+    <img id="inbox-img" src="assets/inbox.png">
+    <span>Inbox</span>
+  </a>
+  <!--<a [href]="getRamUrl() + 'index.html#/examlog'" mat-menu-item>-->
+    <!--<img id="exam-img" src="assets/exam_log.png">-->
+    <!--<span>Exam Log</span>-->
+  <!--</a>-->
+  <a [href]="getRuleEngine() + 'index.html#/login'" mat-menu-item>
+    <img id="rule-engine-img" src="assets/rule_engine.png">
+    <span>Rule Engine</span>
+  </a>
+  <!--<a [href]="getRamUrl() + 'index.html#/metrics'" mat-menu-item>-->
+    <!--<img id="metrics-img" src="assets/metrics.png">-->
+    <!--<span class="lt-menu-text">Metrics</span>-->
+  <!--</a>-->
+</mat-menu>
+
+<mat-menu #csvmenu="matMenu">
+  <a mat-menu-item [matMenuTriggerFor]="AppendixB">Appendix B</a>
+  <a mat-menu-item [matMenuTriggerFor]="CBPFilters">CBP Filters</a>
+</mat-menu>
+
+<mat-menu #AppendixB="matMenu">
+  <button mat-menu-item (click)="getAppendixBCurrent()">Current</button>
+  <button mat-menu-item (click)="getAppendixB()" [disabled]="ds.isDisabled">Work-In-Progress</button>
+</mat-menu>
+
+<mat-menu #CBPFilters="matMenu">
+  <button mat-menu-item (click)="getCBPCurrent()">Current</button>
+  <button mat-menu-item (click)="getCBP()" [disabled]="ds.isDisabled">Work-In-Progress</button>
+</mat-menu>
+
+<mat-menu #pmenu="matMenu">
+  <!--<a [href]="getRamUrl() + 'index.html#/account'" mat-menu-item>-->
+    <!--<img id="profile-img" src="assets/my_profile.png">-->
+    <!--<span>My Profile</span>-->
+  <!--</a>-->
+  <!--<a [href]="getRamUrl() + 'index.html#/ss'" mat-menu-item>-->
+    <!--<img id="service-img" src="assets/shared_services.png">-->
+    <!--<span>Shared Services</span>-->
+  <!--</a>'-->
+  <!--<a [href]="getRamUrl() + 'index.html#/events'" mat-menu-item>-->
+    <!--<img id="syst-event-img" src="assets/system_events.png">-->
+    <!--<span>System Events</span>-->
+  <!--</a>-->
+  <!--<a [href]="getRamUrl() + 'index.html#/settings'" mat-menu-item>-->
+    <!--<img id="syst-setting-img" src="assets/system_settings.png">-->
+    <!--<span>System Setting</span>-->
+  <!--</a>-->
+  <a [href]="getRamUrl() + 'index.html#/logout'" mat-menu-item>
+    <img id="logout-img" src="assets/logout.png">
+    <span>Logout</span>
+  </a>
+</mat-menu>

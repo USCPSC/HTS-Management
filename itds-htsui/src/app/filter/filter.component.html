@@ -1,0 +1,31 @@
+<mat-card class="dashboard-card">
+  <mat-card-content>
+    <div fxLayout="row"
+         fxLayoutGap="10px"
+         fxLayoutAlign="space-around center">
+      <mat-radio-group name="filter" [(ngModel)]="filter"
+                       (ngModelChange)="filterChanged($event)">
+        <mat-radio-button value="no_filter">All HTS</mat-radio-button>
+        <mat-radio-button value="jurisdiction">Jurisdiction</mat-radio-button>
+        <mat-radio-button value="targeted">Targeting</mat-radio-button>
+      </mat-radio-group>
+      <mat-slide-toggle *ngIf="current"
+                        [checked]="flatView"
+                        (change)="onFLatViewChange($event)">
+        Flat View
+      </mat-slide-toggle>
+      <mat-slide-toggle *ngIf="!current"
+                        [checked]="srcToggle"
+                        (change)="onSourceToggle($event)">
+        Just Updates
+      </mat-slide-toggle>
+      <mat-form-field fxFlex="auto" title="Search" class="search-filter-input">
+        <input matInput
+               [(ngModel)]="term"
+               (keydown)="handleKeydown($event)"
+               placeholder="Enter filter text" type="text">
+        <mat-icon matSuffix (click)="termChanged()">search</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

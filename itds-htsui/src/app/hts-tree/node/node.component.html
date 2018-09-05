@@ -1,0 +1,12 @@
+<div class="desc" [ngClass]="classes" [title]="_node.cdescription">
+  <span *ngIf="_flat">{{_node.cdescription}}</span>
+  <span *ngIf="!_flat">{{_node.description}}</span>
+</div>
+<mat-checkbox class="check" disabled
+              [(ngModel)]="_node.targeted"
+              [indeterminate]="false">
+</mat-checkbox>
+<mat-checkbox class="check last" disabled
+              [(ngModel)]="_node.jurisdiction"
+              [indeterminate]="false">
+</mat-checkbox>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- application xmlns="http://java.sun.com/xml/ns/j2ee" version="1.4"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com /xml/ns/j2ee 
+                             http://java.sun.com/xml/ns/j2ee/application_1_4.xsd" -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>HTS Management UI</display-name>
+	
+	<welcome-file-list>
+	  <welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<error-page>
+	  <error-code>404</error-code>
+	  <location>/</location>
+	</error-page>
+</web-app>
+<!-- /application -->

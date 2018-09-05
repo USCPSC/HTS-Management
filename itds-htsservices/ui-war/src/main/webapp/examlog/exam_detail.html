@@ -1,0 +1,111 @@
+
+<!-- Details Tab Start -->
+<div class="row" ng-switch on="exam._editMode_">
+	<div class="col-md-12" ng-switch-when="EDIT" >
+	  <div ng-include="'./examlog/edit/exam_detail_edit.html'"></div>
+	</div> 
+	<div class="col-md-12" ng-switch-when="CREATE" >
+	  <div ng-include="'./examlog/edit/exam_detail_edit.html'"></div>
+	</div> 
+	
+	<div class="col-md-12" ng-switch-when="VIEW">
+		<div class="panel">
+		<!--  begin exam details -->
+			<div class="panel-body row">
+			  <div class="col-md-6">
+				<header>
+					<h4 ng-click="toggle.exam.close = !toggle.exam.close" class="panel-title" style="display: inline-block;">
+						<small ng-class="{'glyphicon glyphicon-plus': toggle.exam.close, 'glyphicon glyphicon-minus': !toggle.exam.close}"></small>
+						Exam Details</h4>
+				</header>
+
+			<div ng-hide="toggle.exam.close" class="form-horizontal no-bottom-margin" role="form">
+			
+				<div class="form-group">
+					<label class="control-label col-sm-6">Exam Date:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.examDate}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Investigator:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.investigator}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Secondary Investigator:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.investigator2}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Investigator Remarks:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.remarks}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Port Code:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.portCode}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Activity Time:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.activityTime}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Travel Time:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.travelTime}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Operation:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.operation}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">IFS Assignment ID:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.ifsAssignmentId}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Tracking Label Missing/Incomplete:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.labelMissingIncomplete}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Broker/Importer Notified of Tracking Label Requirements:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.brokerImporterNotified}}</p></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Time Created:</label>
+					<div class="col-sm-6"><p class="form-control-static">{{exam.createTimestamp}}</p></div>
+				</div>
+			</div>
+		</div>
+		<!--  end exam details -->
+
+		<!--  begin importer details -->
+		<div class="col-md-6">
+				<header>
+					<h4 ng-click="toggle.importer.close = !toggle.importer.close" class="panel-title" style="display: inline-block;">
+						<small ng-class="{'glyphicon glyphicon-plus': toggle.importer.close, 'glyphicon glyphicon-minus': !toggle.importer.close}"></small>
+						Importer Details</h4>
+				</header>
+				<div ng-hide="toggle.importer.close" class="form-horizontal no-bottom-margin" role="form">
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">Importer #:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerNumber}}</p></div></div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">Name:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerName}}</p></div></div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">Address:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerAddressLine1}}<br><p class="form-control-static" style="margin-top:-12px;">{{exam.importerAddressLine2}}</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">City:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerAddressCity}}</p></div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">State:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerAddressState}}</p></div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-6">ZIP:</label>
+						<div class="col-md-9 col-sm-6"><p class="form-control-static">{{exam.importerAddressZip}}</p></div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div></div>	
+</div>
+<!-- Details Tab End -->

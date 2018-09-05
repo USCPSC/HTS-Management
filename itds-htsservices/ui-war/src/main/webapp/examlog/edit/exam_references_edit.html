@@ -1,0 +1,51 @@
+<!-- References Tab Start -->
+<div class="row" id="exam_references_edit_div">
+	<div class="col-md-12 panel">
+		<div class="panel-body">
+		<!--  begin references -->
+			<header>
+				<h4 ng-show="false">References</h4>
+			</header>
+
+			<table class="table" >
+				<tr>
+					<th>Reference Type</th>
+					<th>Reference Value</th>
+					<th>Created by</th>
+					<th>Create Date/Time</th>
+				</tr>
+
+				<tr ng-repeat="reference_i in examCopy.examReferences track by $index" ng-hide="referenceDetail.isRowHidden(reference_i, $index)">
+					<td nowrap>{{ reference_i.referenceTypeName }}
+  						<div style="display: inline-block; float:right; right: 2px;">
+							<a href="" ><img src="./img/edit.png" style="width: 20px; vertical-align: middle" data-toggle="tooltip" title="Edit"
+								ng-click="referenceAction.performReferenceAction('Edit', reference_i,$index);"></a>
+							<a href="" ><img src="./img/new.png" style="width: 18px; vertical-align: middle" data-toggle="tooltip" title="Copy"
+								ng-click="referenceAction.performReferenceAction('Copy', reference_i,$index);"></a>
+							<a href="" ><img src="./img/delete.png" style="width: 16px; vertical-align: middle" data-toggle="tooltip" title="Delete"
+								ng-click="referenceAction.performReferenceAction('Delete', reference_i,$index);"></a>
+ 						</div>
+ 					
+					</td>
+					<td>{{ reference_i.referenceValue }}</td>
+					<td>{{ reference_i.createUserId }}</td>
+					<td>{{ reference_i.createTimestamp }}</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<a href="" 
+							ng-click="referenceAction.performReferenceAction('Add');">Add New Record <img src="./img/new.png" data-toggle="tooltip" title="Add New Record" style="width: 20px; vertical-align: middle"></a>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+		<!--  end references -->
+		
+		
+		</div>
+	</div>
+
+</div>
+
+<!-- References Tab End -->

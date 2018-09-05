@@ -1,0 +1,39 @@
+.dashboard-card {
+  padding: 8px;
+}
+
+.currentHtsTitle {
+  margin: 0 0;
+  font-size: 14px;
+}
+
+span {
+  font-size: 12px;
+  margin: 0 8px;
+}
+
+
+//:host {
+//  background-color:#F8F9F9;
+//  position: absolute;
+//  left: 0;
+//  right: 0;
+//}
+
+:host {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  ::ng-deep {
+    .mat-card {
+      .mat-card-title {
+        margin-bottom: 5px;
+        font-size: 10px;
+      }
+      .mat-card-content {
+        //background-color: #F8F9F9;
+        background-color: #f3f3f3;
+      }
+    }
+  }
+}

@@ -1,0 +1,113 @@
+:host {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  flex: auto;
+  display: flex;
+  flex-flow: column;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.default {
+  color: blue;
+}
+
+.spinner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  .mat-spinner {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    //margin-top: 50%;
+  }
+}
+
+cdk-virtual-scroll-viewport {
+  overflow-x: hidden;
+  .tree-node {
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    .code {
+      flex: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      .place-holder {
+        height: 24px;
+        width: 24px;
+      }
+      .pencil {
+        color: #52361b;
+      }
+      .sunset {
+        color: darkorange;
+      }
+    }
+    app-node-data {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      flex: auto;
+    }
+    .mat-icon-button {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+    }
+  }
+}
+
+.dashboard-card {
+  padding: 5px;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  mat-card-content {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    .separator {
+      border-bottom: black solid thin;
+      flex: none;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
+
+.code-header {
+  width: 190px;
+  box-sizing: border-box;
+  padding-left: 40px;
+}
+
+.code {
+  width: 173px;
+  box-sizing: border-box;
+  .code-num-style {
+    text-decoration: underline;
+    flex: auto;
+  }
+}
+
+.target {
+  width: 25px;
+}
+

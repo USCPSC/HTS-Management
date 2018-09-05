@@ -1,0 +1,40 @@
+<mat-card class="dashboard-card">
+  <mat-card-content class="btn-main-container">
+    <div fxLayout="row wrap"
+         fxLayoutGap="10px"
+         class="editBtn">
+      <button fxFlex="none"
+              *ngIf="isAbortApplyEnabled()"
+              (click)="dataService.applyToRam()"
+              mat-raised-button
+              color="primary"
+              title="Apply to RAM">Apply
+      </button>
+      <button fxFlex="none"
+              *ngIf="isAbortApplyEnabled()"
+              (click)="dataService.abortChanges()"
+              mat-raised-button
+              color="warn"
+              title="Abort Changes">Abort
+      </button>
+      <button fxFlex="none"
+              *ngIf="isEditEnabled()"
+              (click)="dataService.enableCurrentEdit()"
+              mat-raised-button
+              color="primary"
+              title="Allow Edit">Edit
+      </button>
+      <a fxFlex="none"
+         (click)="getLink()"
+         color="primary"
+         mat-raised-button
+         title="Generate Report">Export</a>
+      <!--<button -->
+              <!--(click)="reportRequested()"-->
+              <!--mat-raised-button-->
+              <!--color="primary"-->
+              <!--title="Generate Report">Report-->
+      <!--</button>-->
+    </div>
+  </mat-card-content>
+</mat-card>

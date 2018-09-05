@@ -1,0 +1,234 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>HTS Management UI</name>
+  <groupId>cpsc.gov</groupId>
+  <artifactId>hts-management</artifactId>
+  <version>1</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+    <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+    <node.version>v10.0.0</node.version>
+    <yarn.version>v1.3.2</yarn.version>
+    <npm.version>v6.0.0</npm.version>
+    <npm.skip>false</npm.skip>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+
+  <build>
+    <finalName>hts-management</finalName>
+    <!--<finalName>navigator</finalName> &lt;!&ndash; WAR file name &ndash;&gt;-->
+
+    <plugins>
+      <!-- maven-compiler-plugin -->
+      <plugin>
+        <!--
+          There are no Java classes to compile in the project,
+          but this plugin is required to remove Eclipse error:
+            "Dynamic Web Module 3.0 requires Java 1.6 or newer"
+          because the default Maven Java compiler is 1.5
+         -->
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>Cp1252</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- maven-clean-plugin -->
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>dist</directory>
+              <includes>
+                <include>*</include>
+              </includes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+      <!-- maven-war-plugin -->
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.0.0</version> <!-- Cannot use latest v3.0.0 because of old m2e Eclipse plugin -->
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <webResources>
+            <resource>
+              <directory>dist</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- See
+    https://github.com/eirslett/frontend-maven-plugin/blob/master/frontend-maven-plugin/src/it/example%20project/pom.xml
+    -->
+    <profile>
+      <id>npm.local</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontend-maven-plugin.version}</version>
+            <configuration>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <skip>${npm.skip}</skip>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install node_and_yarn</id>
+                <goals>
+                  <goal>install-node-and-yarn</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>${node.version}</nodeVersion>
+                  <yarnVersion>${yarn.version}</yarnVersion>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>yarn install</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <!--<arguments>install</arguments>-->
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>yarn build_local</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <arguments>run build.local</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>npm.dev</id>
+      <build>
+        <plugins>
+          <!-- com.github.eirslett -->
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontend-maven-plugin.version}</version>
+            <configuration>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <skip>${npm.skip}</skip>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install node_and_yarn</id>
+                <goals>
+                  <goal>install-node-and-yarn</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>${node.version}</nodeVersion>
+                  <yarnVersion>${yarn.version}</yarnVersion>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>yarn install</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <!--<arguments>install</arguments>-->
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>yarn build_dev</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <arguments>run build.dev</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>npm.prod</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontend-maven-plugin.version}</version>
+            <configuration>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <skip>${npm.skip}</skip>
+              </configuration>
+            <executions>
+              <execution>
+                <id>install node_and_npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>${node.version}</nodeVersion>
+                  <yarnVersion>${npm.version}</yarnVersion>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>npm install</id>
+                <!--<id>yarn install</id>-->
+                <goals>
+                  <goal>npm</goal>
+                  <!--<goal>yarn</goal>-->
+                </goals>
+                <configuration>
+                  <arguments>install</arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <!--<id>yarn build_prod</id>-->
+                <id>npm build_prod</id>
+                <goals>
+                  <goal>npm</goal>
+                  <!--<goal>yarn</goal>-->
+                </goals>
+                <configuration>
+                  <arguments>run build.prod</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

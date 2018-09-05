@@ -1,0 +1,64 @@
+<!-- Details Tab Start -->
+<div class="row" ng-controller="inboxAnalysisController">
+	<div class="col-lg-12 col-md-12 panel" ng-if='ruleInfoLoaded && ruleColorLoaded'>
+		<div class="panel-body">
+			<div class="row col-lg-6 col-md-6 col-sm-6" >
+				<h5>Total Score: 
+					<span style="padding: 5px 10px;" ng-style="totalScoreStyle(ruleInfo)">{{ruleInfo.totalScore | number: 0}}</span>
+				</h5>
+				
+				<!-- for 2.1.0 -->
+				<table class="col-md-3" ng-hide='scoreColorList[0].ramScoreVersion  == "2_0_0"'>
+					<tr>
+						<th>Data Category</th>
+						<th>Expert Score</th>
+						<th>Risk Model Parameter</th>
+					</tr>
+					<tr ng-repeat="item in ruleInfo.formatedScoredComponentList">
+						<td>{{item.dataCategory}}</td>
+						<td>{{item.expert | number: 2}}</td>
+						<td>{{item.riskModel}}</td>
+					</tr>	
+				</table>
+				
+				<!--  for 2.0.0 -->
+				<table class="col-md-3" ng-show='scoreColorList[0].ramScoreVersion  == "2_0_0"'>
+					<tr>
+                        <th>Score</th>
+                        <th>Rule Category</th>
+                        <th>Rule Type</th>
+					</tr>
+					<tr ng-repeat="item in ruleInfo.scoredItemList" ng-hide="item.score == 'NaN' || (item.score >= -0.005 && item.score < 0.005)">
+						<td style="text-align: right;">{{item.score | number: 2}}</td>
+						<td>{{item.ruleCategoryName}}</td>
+						<td>{{item.ruleTypeName}}</td>
+					</tr>	
+				</table>
+			</div>
+
+
+			<div class="row col-lg-6 col-md-6 col-sm-6" >
+				<h5>Color Descriptions</h5>
+				<table class="col-md-5">
+					<tr>
+						<th>Color</th>
+						<th>Risk</th>
+						<th>Percentile</th>
+						<th>Score Range</th>
+						<th>Ram Score Version</th>
+					</tr>
+					<tr ng-repeat="color in scoreColorList |  orderBy:'-percentile'">
+						<td ng-style="scoreColorStyle(color)"  style="text-align:center; padding: 2px;"><span>{{color.color}}</span></td>
+						<td style="white-space: nowrap;">{{color.description}}</td>
+						<td>{{color.percentile}}</td>
+						<td ng-if="$first">{{color.minScore}} and above </td>
+						<td ng-if="!$first && !$last">{{color.minScore}} - {{color.maxScore}}</td>
+						<td ng-if="$last">{{color.maxScore}} and below</td>
+						<td>{{color.ramScoreVersion}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

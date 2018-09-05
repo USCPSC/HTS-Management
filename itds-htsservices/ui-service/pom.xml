@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ttw.itds.ui</groupId>
+        <artifactId>itds-ui</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>ui-service</artifactId>
+    <packaging>jar</packaging>
+    <description>service objects used in this project</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ttw.itds.ui</groupId>
+            <artifactId>ui-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ttw.itds.ui</groupId>
+            <artifactId>ui-shared</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>gov.cpsc.itds.common</groupId>
+			<artifactId>itdscommon</artifactId>
+			<version>2.4.7</version>
+		</dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+		<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ldap</groupId>
+			<artifactId>spring-ldap-core</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/com.lowagie/itext -->
+        <!-- Be careful going to new versions of this package! -->
+        <!-- Double check that the License is compatible with the release -->
+        <!-- 2.1.7 is Mozilla Public License 1.1: http://www.mozilla.org/MPL/MPL-1.1.html -->
+        <!-- https://en.wikipedia.org/wiki/IText -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

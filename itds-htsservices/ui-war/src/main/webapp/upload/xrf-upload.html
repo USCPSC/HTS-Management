@@ -1,0 +1,58 @@
+<div class="panel panel-default xrf-panel">
+    <div class="panel-heading">XRF Uploader</div>
+    <div class="panel-body">
+        <form  ng-submit="preview()" novalidate>
+            <div class="form-group">
+                <label>File</label>
+                <div class="input-group col-xs-4">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Browse…<input type="file" onchange="angular.element(this).scope().fileChanged(this)">
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="model.fileName" readonly>
+                </div>
+                <div><label>{{previewError}}</label></div>
+            </div>
+            <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-success" ng-disabled="!xrfFile">Preview</button>
+            <span class="pull-right text-danger">{{file.error}}</span>
+        </form>
+        <form  ng-submit="upload()" novalidate>
+            <table ng-show="xrfPreview.length" class="table table-hover table-striped">
+                <tr>
+                    <th ng-repeat="column in dashboard.columns">
+                        <div>{{column.display}}</div>
+                    </th>
+                </tr>
+                <tr ng-repeat="item in xrfPreview">
+                    <td>
+                        <button type="button" class="btn btn-default" ng-class="item.included ? 'btn-success' : 'btn-danger'" ng-click="item.included=!item.included">{{item.included ? "Included" : "Excluded"}}</button>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="item.readingNo" ng-change="item.isReadingNoValid()"/>
+                        <span class="text-danger">{{item.readingNoError}}</span>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="item.sampleNumber" ng-change="item.isSampleNumberValid()"/>
+                        <span class="text-danger">{{item.sampleNumberError}}</span>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="item.cd" ng-change="item.isCdValid()"/>
+                        <span class="text-danger">{{item.cadmiumError}}</span>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="item.pb" ng-change="item.isPbValid()"/>
+                        <span class="text-danger">{{item.leadError}}</span>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="item.result" ng-change="item.isResultValid()"/>
+                        <span class="text-danger">{{item.resultError}}</span>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-success" ng-show="xrfPreview.length">Upload</button>
+            <div><label>{{model.response}}</label><label class="text-danger">{{model.error}}</label></div>
+        </form>
+    </div>
+</div>

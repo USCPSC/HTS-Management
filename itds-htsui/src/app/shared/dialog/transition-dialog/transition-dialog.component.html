@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>HTS Data Update</h2>
+<mat-dialog-content fxLayout="column">
+  <div fxLayout="row" style="padding-left: 16px">
+    <mat-icon color="accent">report_problem</mat-icon>
+    <div fxLayout="column" style="align-items: center; overflow: hidden; margin-left: 20px; margin-top: 6px;">
+      HTS data update in progress.<br> Your view will be refreshed when complete.
+    </div>
+  </div>
+
+  <div fxLayout="column" style="align-items: center; margin: 10px; padding-left: 35px;">
+    <mat-progress-spinner *ngIf="isInProgress()"
+                          [mode]="mode"
+                          [value]="state.percentage"
+                          [diameter]="50">
+    </mat-progress-spinner>
+  </div>
+</mat-dialog-content>

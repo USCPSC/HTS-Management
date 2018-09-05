@@ -1,0 +1,13 @@
+{
+	"elements": {
+		"ng-form": {
+			"attributes": {
+				"name": {},
+				"class": {}
+			}
+		}
+	},
+	"attributes": {
+		"name": {}
+	}
+}

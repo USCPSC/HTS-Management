@@ -1,0 +1,112 @@
+<div ng-controller="examDetailController" id="inbox_exam_detail_div"
+	class="panel panel-primary" ng-class='{"full-screen": screen.fullScreen}' ng-keyup="screen.processEscapeKey($event.keyCode)">
+
+	<div class="panel-header" id="exam-header">
+			<div style="display: inline-block;">
+				<h4 style="margin-top:0px" ng-switch on="exam._editMode_" >
+					<span ng-switch-when="VIEW">Exam Details</span>
+					<span ng-switch-when="CREATE">Create New Exam</span>
+					<span ng-switch-when="EDIT">Edit Exam</span>
+				
+					<div ng-switch-when="VIEW" style="display: inline-block; left: 2px;" class="dropdown">
+						<a href=""	class="dropdown-toggle" data-toggle="dropdown" ng-click="examAction.setupEditExam();"><img src="img/edit.png"
+							style="margin-top: 0px; width: 20px;height:20px;vertical-align: baseline; margin-right: 0px"></a>
+	
+	
+						<ul class="dropdown-menu">
+							<li ng-repeat="action in examAction.examActionMenu" 
+								ng-class="{'divider': action.divider, 'dropdown-header':action.header}">
+							    <span ng-show="action.header">{{action.header}}</span>
+								<a href="" ng-hide="action.header || action.divider || (action == 'Tracking Label Advisory' && exam.labelMissingIncomplete=='No')" 
+								  ng-click="examAction.performExamAction(action)"><span class="itds-toolbox-item">{{action}}</span></a>
+							</li>
+						</ul>
+					</div> 
+				</h4>
+			</div>
+		
+			<div style="display: inline-block;margin-left:30px;">
+				<label>Entry:</label> {{exam.entryNumber}}
+				<span ng-show="exam._editMode_ === 'VIEW'" style="margin-left:10px;"><label>Exam Remarks:</label> {{exam.remarks}}</span>
+			</div>
+			
+			<div style="display: inline-block; float: right; margin-top:-20px;">
+					<div style="display:inline-block;" class="window-control">
+
+						<a href="" ng-show="!screen.fullScreen" ng-click="screen.displayFullScreen(true)">
+					          <span data-toggle="tooltip" title="Maximize" class="xglyphicon xglyphicon-fullscreen">+</span>
+					     </a>
+					        
+					    <a href="" ng-show="screen.fullScreen" ng-click="screen.displayFullScreen(false)">
+					      	  <span data-toggle="tooltip" title="Restore Down" class="xglyphicon xglyphicon-resize-small">-</span>
+					    </a>
+					<a href=""  ng-click="examAction.notifyExamCloseEvent()" data-toggle="tooltip" title="Close">
+						<span data-toggle="tooltip" title="Close" class="xglyphicon xglyphicon-fullscreen">&times;</span>
+					</a>
+					
+        			</div>
+			
+			</div>
+	</div>
+
+
+	<ng-form class="panel-body" name="exam_form">
+		<div class="row">
+
+			<div class=" col-md-12">
+				<nav id="inbox_examlog_detail_navbar" style="display:inline-block;" role="navigation">
+					<ul class="nav nav-tabs">
+						<li id="li_exam_detail_nav_details"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Details'}" ng-click="showDetailTab('Details');">Details</a></li>
+						<li id="li_exam_detail_nav_prod"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'ProductSamples'}" ng-click="showDetailTab('ProductSamples');" style="width:180px">Products/Samples</a></li>
+						<li id="li_exam_detail_nav_contacts"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Contacts'}" ng-click="showDetailTab('Contacts');">Contacts</a></li>
+						<li id="li_exam_detail_nav_references"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'References'}" ng-click="showDetailTab('References');">References</a></li>
+						<li id="li_exam_detail_nav_documents"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Documents'}" ng-click="showDetailTab('Documents');">Documents</a></li>
+						<li id="li_exam_detail_nav_entrylines"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'EntryLines'}" ng-click="showDetailTab('EntryLines');">Entry Lines</a></li>
+					</ul>
+				</nav>
+
+					<div ng-show="exam._editMode_ !== 'VIEW'" style="display:inline-block; float:right">
+						<span ng-show="exam_form.$dirty" class="bg-warning">Unsaved data </span>
+						<button type="button" class="btn btn-primary"  ng-click="examAction.performExamAction('saveEdit');">Save</button>
+						<button type="button" class="btn btn-default" ng-click="examAction.performExamAction('cancelEdit');">Cancel</button>
+					</div>
+
+			</div>
+			<div class="col-md-12" ng-show="examCopy.examErrors">
+				<div class="exam_save_errors">
+					<h5  class="error">{{examCopy.examErrors.message}}</h5>
+					<ol>
+						<li ng-repeat="err in examCopy.examErrors"><b>{{err.group}} -> <span ng-show="err.index != undefined"> record #{{err.index}} -> </span> {{err.field}}:</b> {{err.message}}
+					</ol>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="animate-switch-container" ng-switch on="detailTabSelected">
+			<div class="animate-switch active" ng-switch-when="Details">
+				<div ng-include="'./examlog/exam_detail.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Contacts">
+				<div ng-include="'./examlog/exam_contacts.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="References">
+				<div ng-include="'./examlog/exam_references.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Documents">
+				<div ng-include="'./examlog/exam_documents.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="EntryLines">
+				<div ng-include="'./examlog/exam_entrylines.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="ProductSamples">
+				<div ng-include="'./examlog/exam_product_samples.html'"></div>
+			</div>
+			<div class="animate-switch" ng-switch-default>
+				<div>Invalid Tab Selection</div>
+			</div>
+		</div>
+
+	</ng-form>
+
+</div>

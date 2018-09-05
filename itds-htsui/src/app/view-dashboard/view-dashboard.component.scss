@@ -1,0 +1,14 @@
+
+:host {
+  flex: auto;
+  display: flex;
+  flex-flow: column;
+  ::ng-deep {
+    .mat-card {
+      .mat-card-title {
+        margin-bottom: 5px;
+        font-size: 10px;
+      }
+    }
+  }
+}

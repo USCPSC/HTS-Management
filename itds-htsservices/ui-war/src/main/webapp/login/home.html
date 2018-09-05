@@ -1,0 +1,36 @@
+<div class="panel panel-default login-panel" ng-controller="homeController">
+    <div class="panel-heading">ITDS/RAM 2.0 Home</div>
+
+    <div class="panel-body">
+        <div class="text-center">
+            <h4 style='color:blue'>
+				This is a United States Government computer system, maintained by the Consumer Product Safety Commission, to provide Official Unclassified U.S. Government Information only. Use of this system by any authorized or unauthorized user constitutes consent to monitoring, retrieval, and disclosure by authorized personnel. USERS HAVE NO REASONABLE EXPECTATION OF PRIVACY IN THE USE OF THIS SYSTEM. Unauthorized use may subject violators to criminal, civil, and/or disciplinary action.
+			</h4>
+        </div>
+
+			<hr/>
+
+        <div class="text-center">
+                        <div>RAM2.0 Status: <b><i>Available</i></b></div>
+                        <div>Version: <b><i>{{getVersion()}}</i></b></div>
+        </div>
+
+		<div ng-if="message">
+
+			<div class="text-center">
+	            	<p ng-bind-html="message"></p>
+	        </div>
+	
+		</div>
+	        
+		 <hr/>
+	
+	     <div class="row">
+	         <div class="col-xs-12" style="text-align: center">
+	     					<a href=""><button type="button" class="btn btn-primary" ng-click="ok()">OK</button></a>
+	         </div>
+	     </div>
+        
+    </div>
+</div>
+

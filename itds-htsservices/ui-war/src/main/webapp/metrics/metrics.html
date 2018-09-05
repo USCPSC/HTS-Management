@@ -1,0 +1,68 @@
+<div class="panel panel-default metrics-panel">
+    <div class="panel-heading">Metrics</div>
+    <div class="panel-body">
+        <uib-tabset active="active">
+           <!-- <uib-tab index="0" heading="Workflow Activity (FY {{getFiscalYear()}})">  gz- -->
+            <uib-tab index="0" heading="Workflow Activity (FY{{getFiscalYearLastTwoDig()}} to Date)">  <!--  gz+ -->
+                <div class="row" id="workflow" ng-show="workflowActivityMetrics.length > 0">
+                    <svg></svg>
+                </div>
+                <div class="row table-wrapper" style="margin-top: 20px">
+                    <table class="table table-hover table-striped" ng-show="workflowActivityMetrics.length > 0">
+                        <tr>
+                            <th ng-repeat="column in dashboard.workflowColumns">
+                                <div>{{column.display}}</div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="metric in workflowActivityMetrics">
+                            <td ng-repeat="column in dashboard.workflowColumns">{{ column.getValue(metric) }}</td>
+                        </tr>
+                    </table>
+                    <h3 class="no-metrics" ng-hide="loading || workflowActivityMetrics.length > 0">No Data Available</h3>
+                </div>
+            </uib-tab>
+            <!--  <uib-tab index="1" heading="Exams and Samples (FY {{getFiscalYear()}})">  -->
+            <uib-tab index="1" heading="Exams and Samples (FY{{getFiscalYearLastTwoDig()}} to Date)">
+                <div  class="row">
+                    <div id="exams" ng-show="examDataExists()">
+                        <svg></svg>
+                    </div>
+                    <div id="samples" ng-show="sampleDataExists()">
+                        <svg></svg>
+                    </div>
+                </div>
+                <div class="row table-wrapper">
+                    <table class="table table-hover table-striped" ng-show="examSampleMetrics.length > 0">
+                        <tr>
+                            <th ng-repeat="column in dashboard.examColumns">
+                                <div>{{column.display}}</div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="metric in examSampleMetrics">
+                            <td ng-repeat="column in dashboard.examColumns">{{ column.getValue(metric) }}</td>
+                        </tr>
+                    </table>
+                    <h3 class="no-metrics" ng-hide="examSampleMetrics.length > 0">No Data Available</h3>
+                </div>
+            </uib-tab>
+            <uib-tab index="2" heading="Data Processing" ng-show="isAuthorized(['ROLE_ETL','ROLE_METRICS_READ_DP'])">
+                <div class="row" id="dataprocessing" ng-show="dataProcessingMetrics.length > 0">
+                    <svg></svg>
+                </div>
+                <div class="row table-wrapper" style="margin-top: 20px">
+                    <table class="table table-hover table-striped" ng-show="dataProcessingMetrics.length > 0">
+                        <tr>
+                            <th ng-repeat="column in dashboard.dataProcessingColumns">
+                                <div>{{column.display}}</div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="metric in dataProcessingMetrics">
+                            <td ng-repeat="column in dashboard.dataProcessingColumns">{{ column.getValue(metric) }}</td>
+                        </tr>
+                    </table>
+                    <h3 class="no-metrics" ng-hide="dataProcessingMetrics.length > 0">No Data Available</h3>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

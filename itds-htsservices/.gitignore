@@ -1,0 +1,11 @@
+.settings
+.project
+.classpath
+.springBeans
+.tern-project
+target
+/ui-service/nbproject/
+/ui-shared/nbproject/
+.iml
+.idea/
+/**/*.iml

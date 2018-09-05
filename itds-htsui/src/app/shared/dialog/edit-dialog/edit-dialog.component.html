@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>HTS Code Details</h2>
+<mat-dialog-content>
+  <div fxLayout="column">
+    <p>HTS Code {{data.node.code}}</p>
+
+    <mat-form-field>
+      <textarea matInput [disabled]="!data.save"
+                cdkTextareaAutosize cdkAutosizeMaxRows="10"
+                [(ngModel)]="data.node.description"
+                placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput disabled
+                cdkTextareaAutosize cdkAutosizeMaxRows="10"
+                [(ngModel)]="data.node.cdescription"
+                placeholder="Concatenated Description"
+                class="disabled-txt"></textarea>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+      <mat-checkbox labelPosition="after"
+                    [disabled]="!data.save"
+                    (ngModelChange)="jurisdictionChanged($event)"
+                    [(ngModel)]="data.node.jurisdiction">
+        Jurisdiction
+      </mat-checkbox>
+      <mat-checkbox labelPosition="after"
+                    [disabled]="!data.save"
+                    (ngModelChange)="targetChanged($event)"
+                    [(ngModel)]="data.node.targeted">
+        Targeted
+      </mat-checkbox>
+    </div>
+
+    <!--<mat-form-field>-->
+      <!--<input matInput [matDatepicker]="picker1"-->
+             <!--[disabled]="!data.save"-->
+             <!--[(ngModel)]="data.node.startDate"-->
+             <!--placeholder="Start date">-->
+      <!--<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+      <!--<mat-datepicker #picker1></mat-datepicker>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field>-->
+      <!--<input matInput [matDatepicker]="picker2"-->
+             <!--[disabled]="!data.save"-->
+             <!--[(ngModel)]="data.node.endDate"-->
+             <!--placeholder="End date">-->
+      <!--<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+      <!--<mat-datepicker #picker2></mat-datepicker>-->
+    <!--</mat-form-field>-->
+    <mat-form-field>
+      <textarea matInput cdkTextareaAutosize
+                [disabled]="!data.save"
+                cdkAutosizeMaxRows="10"
+                [(ngModel)]="data.node.notes"
+                placeholder="Notes"></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-button color="warn"
+          [mat-dialog-close]="false">Cancel
+  </button>
+  <button mat-button
+          *ngIf="data.save"
+          title="Save Data" [mat-dialog-close]="true">Save</button>
+</mat-dialog-actions>

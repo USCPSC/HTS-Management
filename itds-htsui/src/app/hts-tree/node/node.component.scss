@@ -1,0 +1,86 @@
+:host {
+  min-width: 0;
+}
+
+.desc {
+  flex: auto;
+  padding-left: 1em;
+  //display: flex;
+  //flex-direction: row;
+  //min-width: 0;
+  //direction: rtl;
+  padding-right: 5px;
+  //& > div {
+  //  flex: auto;
+  //  overflow: hidden;
+  //  min-width: 0;
+  //  text-overflow: ellipsis;
+  //  white-space: nowrap;
+  //  text-align: left;
+  //  direction: rtl;
+  //}
+}
+
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reverse-ellipsis {
+  /* Your move. */
+  text-overflow: clip;
+  position: relative;
+  background-color: #FFF;
+}
+
+.reverse-ellipsis:before {
+  content: '\02026';
+  position: absolute;
+  z-index: 1;
+  left: -1em;
+  background-color: inherit;
+  padding-left: 1em;
+  margin-left: 0.5em;
+}
+
+.reverse-ellipsis span {
+  min-width: 100%;
+  position: relative;
+  display: inline-block;
+  float: right;
+  overflow: visible;
+  background-color: inherit;
+  text-indent: 0.5em;
+}
+
+.reverse-ellipsis span:before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: inherit;
+  z-index: 200;
+  left: -.5em;
+}
+
+.check {
+  min-width: 25px;
+}
+.last {
+  margin-right: 10px;
+}
+.default {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+

@@ -1,0 +1,92 @@
+
+	<!--  begin samples details -->
+	<div class="popup-header">
+			<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="cancel();">&times;</button>
+			<h4 class="modal-title">Product/Sample Details</h4>
+			
+	</div>
+	
+	<div>
+		<form class="form-horizontal no-bottom-margin" role="form">
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="dispositionDescription">Disposition:</label>
+				<div class="col-sm-8"><p class="form-control-static" id="dispositionDescription">{{sample.dispositionDescription}}</p></div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Statute:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.statuteCode}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Sample Number:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.sampleNumber}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Product Description:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.productDescription}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Model/Item #:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.itemModel}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email"># Products Screened:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.numberProductsScreened}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Storage Location:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.storageLocation}}</p></div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Reason for Screening:</label>
+				<div class="col-sm-8">
+					<ul class="form-control-static">
+						<li ng-repeat="reason_i in sample.reasons">
+						    {{reason_i.reasonCode}} - {{reason_i.reasonName}}
+						</li>
+					</ul>
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Reason for Sampling:</label>
+				<div class="col-sm-8">
+					<ul class="form-control-static">
+						<li ng-repeat="reason_j in sample.reasonsForSampling">
+						    {{reason_j.reasonCode}} - {{reason_j.reasonName}}
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="email">Remarks:</label>
+				<div class="col-sm-8"><p class="form-control-static">{{sample.remarks}}</p></div>
+			</div>
+	
+			<div class="form-group" style="margin-bottom: 12px;">
+				<label class="control-label col-sm-4" for="email">Readings:</label>
+				<div class="col-sm-8">
+<!-- 					<ul class="form-control-static" ng-show="sample.readings.length <3"> -->
+<!-- 						<li ng-repeat="reading_i in sample.readings"> -->
+<!-- 						    {{reading_i.readingType}}: {{reading_i.readingValue}} -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+					<button ng-show="sample.readingItems" type="button" class="btn btn-default" ng-click="showReadings(true);">View</button>
+				</div>
+			</div>
+	
+		</form>
+	</div>
+	
+	<div class="modal-footer" style="text-align: center">
+	    <button type="button" class="btn btn-primary" data-dismiss="myModal" ng-click="ok();">Close</button>
+	</div> 
+	<!--  end product/sample details -->

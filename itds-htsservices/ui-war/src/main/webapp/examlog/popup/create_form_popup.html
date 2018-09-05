@@ -1,0 +1,436 @@
+<div id="create_form_popup_div" class="modal-dialog">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="popup-header">
+					<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="vm.cancel()">&times;</button>
+					<h4 class="modal-title">Create PDF Form: {{vm.formName}}</h4>
+				</div>
+
+				<div name="formCreatePdf" class="form-horizontal" role="form">
+
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group col-xs-6" ng-show="vm.showField('formDate')">
+									<label for="pdfFormDate" class="control-label col-xs-6 col-md-4">Form Date</label>
+									<div class="col-xs-6">
+										<input id="pdfFormDate" name="pdfFormDate" type="text" size="10" maxlength="10" class="form-control col-xs-2" ng-model="vm.pdfDto.formDate" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('toPort')">
+									<label for="pdfToPort" class="control-label col-xs-6 col-md-4">To Port</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfToPort" name="pdfToPort" class="form-control" ng-model="vm.pdfDto.toPort">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('toAttn')">
+									<label for="pdfToAttn" class="control-label col-xs-6 col-md-4">To Attention</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfToAttn" name="pdfToAttn" class="form-control" ng-model="vm.pdfDto.toAttn">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('fromOffice')">
+									<label for="pdfFromOffice" class="control-label col-xs-6 col-md-4">From Office</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfFromOffice" name="pdfFromOffice" class="form-control" ng-model="vm.pdfDto.fromOffice">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('fromAddress')">
+									<label for="pdfFromAddress" class="control-label col-xs-6 col-md-4">From Address</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfFromAddress" name="pdfFromAddress" class="form-control" ng-model="vm.pdfDto.fromAddress">
+										</textarea>
+									</div>
+								</div>
+								
+								<!-- gz++ for form 163 AREA OFFICE ADDRESS addition -->
+								<div class="form-group col-xs-6" ng-show="vm.showField('fromAreaOfficeAddress')">
+									<label for="pdfFromAddress" class="control-label col-xs-6 col-md-4">Area Office Address</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfFromAddress" name="pdfFromAddress" class="form-control" ng-model="vm.pdfDto.fromAddress">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('individualName')">
+									<label for="pdfIndividualName" class="control-label col-xs-6 col-md-4">Name of Individual</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfIndividualName" name="pdfIndividualName" class="form-control" ng-model="vm.pdfDto.individualName">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('individualTitle')">
+									<label for="pdfIndividualTitle" class="control-label col-xs-6 col-md-4">Title of Individual</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfIndividualTitle" name="pdfIndividualTitle" class="form-control" ng-model="vm.pdfDto.individualTitle">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('consigneeName')">
+									<label for="pdfConsigneeName" class="control-label col-xs-6 col-md-4">Consignee Name</label>
+									<div class="col-xs-6">
+										<input id="pdfConsigneeName" name="pdfConsigneeName" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.consigneeName" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('consigneeAddress')">
+									<label for="pdfConsigneeAddress" class="control-label col-xs-6 col-md-4">Consignee Address</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfConsigneeAddress" name="pdfConsigneeAddress" class="form-control" ng-model="vm.pdfDto.consigneeAddress">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('customsBroker')">
+									<label for="pdfCustomsBroker" class="control-label col-xs-6 col-md-4">Customs Broker Name</label>
+									<div class="col-xs-6">
+										<input id="pdfCustomsBroker" name="pdfCustomsBroker" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.customsBroker" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('customsBrokerAddress')">
+									<label for="pdfConsigneeAddress" class="control-label col-xs-6 col-md-4">Customs Broker Address</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfConsigneeAddress" name="pdfConsigneeAddress" class="form-control" ng-model="vm.pdfDto.customsBrokerAddress">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('customsBrokerPhone')">
+									<label for="pdfCustomsBrokerPhone" class="control-label col-xs-6 col-md-4">Customs Broker Phone</label>
+									<div class="col-xs-6">
+										<input id="pdfCustomsBrokerPhone" name="pdfCustomsBrokerPhone" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.customsBrokerPhone" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('customsBrokerEmail')">
+									<label for="pdfCustomsBrokerEmail" class="control-label col-xs-6 col-md-4">Customs Broker Fax or Email</label>
+									<div class="col-xs-6">
+										<input id="pdfCustomsBrokerEmail" name="pdfCustomsBrokerEmail" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.customsBrokerEmail" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('importerName')">
+									<label for="pdfImporterName" class="control-label col-xs-6 col-md-4">Importer Name</label>
+									<div class="col-xs-6">
+										<input id="pdfImporterName" name="pdfImporterName" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.importerName" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('importerAddress')">
+									<label for="pdfImporterAddress" class="control-label col-xs-6 col-md-4">Importer Address</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfImporterAddress" name="pdfImporterAddress" class="form-control" ng-model="vm.pdfDto.importerAddress">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('importerNumber')">
+									<label for="pdfImporterNumber" class="control-label col-xs-6 col-md-4">Importer Number</label>
+									<div class="col-xs-6">
+										<input id="pdfImporterNumber" name="pdfImporterNumber" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.importerNumber" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('importerEmail')">
+									<label for="pdfImporterEmail" class="control-label col-xs-6 col-md-4">Importer Fax or Email</label>
+									<div class="col-xs-6">
+										<input id="pdfImporterEmail" name="pdfImporterEmail" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.importerEmail" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('storageLocation')">
+									<label for="pdfStorageLocation" class="control-label col-xs-6 col-md-4">Storage Location</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfStorageLocation" name="pdfStorageLocation" class="form-control" ng-model="vm.pdfDto.storageLocation">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('invoiceNum')">
+									<label for="pdfInvoiceNum" class="control-label col-xs-6 col-md-4">Invoice Number</label>
+									<div class="col-xs-6">
+										<input id="pdfInvoiceNum" name="pdfInvoiceNum" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.invoiceNum" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('invoiceDate')">
+									<label for="pdfInvoiceDate" class="control-label col-xs-6 col-md-4">Invoice Date</label>
+									<div class="col-xs-6">
+										<input id="pdfInvoiceDate" name="pdfInvoiceDate" type="text" size="10" maxlength="10" class="form-control col-xs-2" ng-model="vm.pdfDto.invoiceDate" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('portOfEntry')">
+									<label for="pdfPortOfEntry" class="control-label col-xs-6 col-md-4">Port Name</label>
+									<div class="col-xs-6">
+										<input id="pdfPortOfEntry" name="pdfPortOfEntry" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.portOfEntry" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('entryNumber')">
+									<label for="pdfEntryNumber" class="control-label col-xs-6 col-md-4">Entry</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfEntryNumber" name="pdfEntryNumber" class="form-control" ng-model="vm.pdfDto.entryNumber">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('entryDate')">
+									<label for="pdfEntryDate" class="control-label col-xs-6 col-md-4">Entry Date</label>
+									<div class="col-xs-6">
+										<input id="pdfEntryDate" name="pdfEntryDate" type="text" size="10" maxlength="10" class="form-control col-xs-2" ng-model="vm.pdfDto.entryDate" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('collectionDate')">
+									<label for="pdfCollectionDate" class="control-label col-xs-6 col-md-4">Collection Date</label>
+									<div class="col-xs-6">
+										<input id="pdfCollectionDate" name="pdfCollectionDate" type="text" size="10" maxlength="10" class="form-control col-xs-2" ng-model="vm.pdfDto.collectionDate" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('cbpFax')">
+									<label for="pdfCbpFax" class="control-label col-xs-6 col-md-4">CBP Fax</label>
+									<div class="col-xs-6">
+										<input id="pdfCbpFax" name="pdfCbpFax" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.cbpFax" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('examinationSite')">
+									<label for="pdfExaminationSite" class="control-label col-xs-6 col-md-4">Examination Site</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfExaminationSite" name="pdfExaminationSite" class="form-control" ng-model="vm.pdfDto.examinationSite">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('programOperation')">
+									<label for="pdfProgramOperation" class="control-label col-xs-6 col-md-4">Program/Operation</label>
+									<div class="col-xs-6">
+										<input id="pdfProgramOperation" name="pdfProgramOperation" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.programOperation" >
+									</div>
+								</div>
+
+
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('countryOfOrigin')">
+									<label for="pdfCountryOfOrigin" class="control-label col-xs-6 col-md-4">Country Of Origin</label>
+									<div class="col-xs-6">
+										<input id="pdfCountryOfOrigin" name="pdfCountryOfOrigin" type="text" class="form-control col-xs-2" ng-model="vm.pdfDto.countryOfOrigin" >
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('manufacturerNumbers')">
+									<label for="pdfManufacturerNumbers" class="control-label col-xs-6 col-md-4">Manufacturer Number</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfManufacturerNumbers" name="pdfManufacturerNumbers" class="form-control" ng-model="vm.pdfDto.manufacturerNumbers">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('officerName')">
+									<label for="pdfOfficerName" class="control-label col-xs-6 col-md-4">CPSC Investigator Name</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfOfficerName" name="pdfOfficerName" class="form-control" ng-model="vm.pdfDto.officerName">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('officerTitle')">
+									<label for="pdfOfficerTitle" class="control-label col-xs-6 col-md-4">CPSC Officer Title</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfOfficerTitle" name="pdfOfficerTitle" class="form-control" ng-model="vm.pdfDto.officerTitle">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('officerPhoneNumber')">
+									<label for="pdfOfficerPhoneNumber" class="control-label col-xs-6 col-md-4">CPSC Officer Phone</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfOfficerPhoneNumber" name="pdfOfficerPhoneNumber" class="form-control" ng-model="vm.pdfDto.officerPhoneNumber">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('officerFax')">
+									<label for="pdfOfficerFax" class="control-label col-xs-6 col-md-4">CPSC Officer Fax</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfOfficerFax" name="pdfOfficerFax" class="form-control" ng-model="vm.pdfDto.officerFax">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('officerEmail')">
+									<label for="pdfOfficerEmail" class="control-label col-xs-6 col-md-4">CPSC Officer Email</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfOfficerEmail" name="pdfOfficerEmail" class="form-control" ng-model="vm.pdfDto.officerEmail">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('firmName')">
+									<label for="pdfFirmName" class="control-label col-xs-6 col-md-4">Firm Name</label>
+									<div class="col-xs-6">
+										<input type="text" size = 38 id="pdfFirmName" name="pdfFirmName" class="form-control" ng-model="vm.pdfDto.firmName">
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('firmAddress')">
+									<label for="pdfFirmAddress" class="control-label col-xs-6 col-md-4">Firm Address</label>
+									<div class="col-xs-6">
+										<input type="text" id="pdfFirmAddress" name="pdfFirmAddress" class="form-control" ng-model="vm.pdfDto.firmAddress">
+									</div>
+								</div>
+								
+																
+								<div class="form-group col-xs-6" ng-show="vm.showField('commentsToCbp')">
+									<label for="pdfCommentsToCbp" class="control-label col-xs-6 col-md-4">Comments to CBP</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfCommentsToCbp" name="pdfCommentsToCbp" class="form-control" ng-model="vm.pdfDto.commentsToCbp">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('distributionCC')">
+									<label for="pdfDistributionCC" class="control-label col-xs-6 col-md-4">Distribution CC</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfDistributionCC" name="pdfDistributionCC" class="form-control" ng-model="vm.pdfDto.distributionCC">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('htsNumbers')">
+									<label for="pdfHtsNumbers" class="control-label col-xs-6 col-md-4">HTS Number(s)</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfHtsNumbers" name="pdfHtsNumbers" class="form-control" ng-model="vm.pdfDto.htsNumbers">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-12" ng-show="vm.showField('samples')">
+									<label for="pdfProducts" class="control-label col-xs-2">Select Samples</label>
+									<div class="col-xs-10">
+										<div  isteven-multi-select
+											  id="multiselectsamples" 
+											  name="multiselectsamples" 
+											  input-model="vm.selectableSamples"
+											  output-model="vm.selectedSamples"
+											  item-label="sampleNo"
+											  button-label="sampleNo"
+											  tick-property="ticked" 
+											  helper-elements="all none"
+											  max-labels="3"
+											  output-properties="sampleNo itemModel productDescription"
+											  on-close="vm.multiSelectSampleClose()"></div>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('samples')" >
+									<label for="pdfSamples" class="control-label col-xs-6 col-md-4">CPSC Samples Number</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfSamples" name="pdfSamples" class="form-control" ng-model="vm.pdfDto.samples">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('products')">
+									<label for="pdfProducts" class="control-label col-xs-6 col-md-4">Product(s)</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfProducts" name="pdfProducts" class="form-control" ng-model="vm.pdfDto.products">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-6" ng-show="vm.showField('modelItems')">
+									<label for="pdfModelItems" class="control-label col-xs-6 col-md-4">Model(s)/Item(s)</label>
+									<div class="col-xs-6">
+										<textarea rows="3" id="pdfModelItems" name="pdfModelItems" class="form-control" ng-model="vm.pdfDto.modelItems">
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-12" ng-show="vm.showField('actionRequested')">
+									<label for="pdfActionRequested" class="control-label col-xs-3 col-md-2">Action Requested</label>
+									<div class="col-xs-6">
+										<select class="form-control" name="pdfActionRequested" id="pdfActionRequested" ng-model="vm.pdfDto.actionRequested">
+											<option>Release of Product Without Condition</option>
+											<option>Seize under 19 U.S.C. § 1595a(c)(2)(A)</option>
+											<option>Seize under 19 U.S.C. § 1595a(c)(2)(A) - CPSC Recommends Destruction of the Product</option>
+											<option>Issue Notice of Redelivery and, if Redelivered, Seize under 19 U.S.C. § 1595a(c)(2)(A) </option>
+											<option>Detained Product has been Refused Admission by CPSC.  The Product must be Destroyed or Exported</option>
+											<option>Conditionally Released Product has been Refused Admission by CPSC -  Issue Notice of Redelivery </option>
+											<option>Conditionally Release Product Pending Examination Results</option>
+											<option>Conditionally Release Product for Reconditioning </option>
+											<option>Conditionally Release Product for Destruction Under Supervision </option>
+											<option>Permit Export to Country of Origin Under Supervision (per agreement with the importer) </option>
+											<option>Arrange for Long Term Storage of the Product - Hearing Requested by Importer Under CPSC Authority</option>
+											<option>Other, See Part V (Comments to CBP) Below for Instructions</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-12" ng-show="vm.showField('addActionRequested')">
+									<label for="pdfAddlActionRequested" class="control-label col-xs-3 col-md-2">Additional Action Requested</label>
+									<div class="col-xs-6">
+										<select class="form-control" name="pdfAddlActionRequested" id="pdfAddlActionRequested" ng-model="vm.pdfDto.addlActionRequested">
+											<option>The product has been tested/evaluated and appears to comply with the applicable CPSC statute, rule, regulation, standard, or ban.</option>
+											<option>The product has been tested/evaluated and violates the applicable CPSC statute, rule, regulation, standard, or ban.</option>
+											<option>Request redelivery as examination of the sampled product confirms that it is in violation of the CPSC statute indicated below.</option>
+											<option>The product has been refused admission by CPSC and must be destroyed or exported.</option>
+											<option>Conditionally release the lot under the Basic Importation and Entry Bond pending the completion of examination of the shipment.</option>
+											<option>The product violates the CPSC statute indicated below. Conditionally release the sampled lot for reconditioning.</option>
+											<option>The importer has agreed to destroy the lot at its own expense under Government supervision.</option>
+											<option>The sampled lot must be exported under CBP supervision to its country of origin.</option>
+											<option>A hearing under CPSC authorities has been requested.  Prepare the shipment for long-term storage.</option>
+											<option>See Part V - Comments to CBP for instructions.</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group col-xs-12" ng-show="vm.showField('statute')">
+									<label for="pdfStatute" class="control-label col-xs-3 col-md-2">Statute</label>
+									<div class="col-xs-6">
+										<select class="form-control" id="pdfStatute" name="pdfStatute" ng-model="vm.pdfDto.statute">
+											<option ng-repeat="x in vm.statutes" value = "{{x.statuteDescription}}">{{x.statuteDescription}}</option>									
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" ng-show="vm.showField('firmStreetAndCity')">
+								<!-- gz modified for firm address label name for form 163-->
+								<div class="form-group col-xs-3" >
+									<label for="pdfFirmAddress" class="control-label">Firm Street Address, </br>City and State</label>
+								</div>
+								<div class="col-xs-9">	
+								    <input type="text"  size="82" id="pdfFirmAddress" name="pdfFirmAddress" class="form-control" 
+								    	ng-model="vm.pdfDto.firmAddress"> 
+								</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+
+								<div class="modal-footer" style="text-align: center">
+									<button type="button" class="btn btn-primary" ng-click="vm.getPdf()">Get PDF</button>
+								</div>
+								<!--				<pre>{{vm.pdfDto|json}}</pre>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$("#create_form_popup_div").resizable();
+		$("#create_form_popup_div").draggable({
+			handle: ".popup-header"
+		});
+		$("#pdfFormDate").datepicker();
+		$("#pdfEntryDate").datepicker();
+	</script>
+</div>
+

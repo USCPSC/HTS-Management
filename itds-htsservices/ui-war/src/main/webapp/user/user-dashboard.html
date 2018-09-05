@@ -1,0 +1,22 @@
+<div class="panel panel-default user-panel">
+    <div class="panel-heading">User Administration</div>
+    <div class="panel-body">
+        <button class="btn btn-success pull-right" ng-click="addUser()" ng-show="isAuthorized(['ROLE_USER_SAVE'])">Create User</button>
+        <table class="table table-hover table-striped">
+            <tr>
+                <th ng-repeat="column in dashboard.columns">
+                    <div>{{column.display}}</div>
+                    <input ng-if="column.allowFilter" ng-model="column.filter" ng-change="dashboard.page=0; getUsers()" type="text" class="form-control"/>
+                </th>
+            </tr>
+
+            <tr ng-repeat="user in users.content" ng-click="selectUser(user.username)">
+                <td ng-repeat="column in dashboard.columns">{{ column.getValue(user) }}</td>
+            </tr>
+        </table>
+        <div class="pull-right">
+            <button type="button" class="btn btn-info" ng-click="previous()" ng-disabled="users.first">Previous</button>
+            <button type="button" class="btn btn-info" ng-click="next()" ng-disabled="users.last">Next</button>
+        </div>
+    </div>
+</div>

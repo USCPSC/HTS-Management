@@ -1,0 +1,59 @@
+<div id="new_exam_popup_div" class="container  modal-dialog">
+	
+	<div class="popup-header">
+			<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="cancel();">&times;</button>
+			<h4 class="modal-title">Create New Exam</h4>
+			
+	</div>
+	
+	<ng-form name="new_exam_form" class="form-horizontal" role="form">
+	
+		<div ng-show></div>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-6" for="name">Entry Number:</label>
+			<div class="col-sm-6">
+				<div>
+					
+					<div ng-show="entryNumber_validation_error" class="error">{{entryNumber_validation_error}}</div>
+					<input  type="text" size="12" maxlength="11" name="entryNumber" ng-model="entryNumber" ng-change="entryNumber = entryNumber.toUpperCase()"
+								uib-typeahead="entryNumber as entryNumber for entryNumber in getFilteredEntryNumbers($viewValue)"/>		
+					
+								
+					<button type="button" class="btn btn-primary" ng-click="prePopulateExam(entryNumber);">Create</button>								
+				</div>
+			</div>
+		</div>
+		
+		<h5 style="text-align: center">OR</h5>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-6" for="name">Entry Number Unknown: <br/>Enter an ID for new Exam</label>
+			<div class="col-sm-6">
+				<div>
+					<div ng-show="entryNumber2_validation_error" class="error">{{entryNumber2_validation_error}}</div>
+					<input type="text" size="12" maxlength="14" name="entryNunmber" ng-model="entryNumber2" ng-change="entryNumber2 = entryNumber2.toUpperCase()"/>					
+					<button type="button" class="btn btn-primary" ng-click="newExam(entryNumber2);">Create</button>
+				</div>								
+			</div>
+		</div>
+	</ng-form>
+	
+	<!--  end Contact details -->
+	
+	
+	<div class="modal-footer" style="text-align: center">
+		<button type="button" class="btn btn-primary" ng-click="ok();">Close</button>
+	</div>
+
+</div> <!-- new_exam_popup_div  -->
+
+
+<script>
+	// use jQuery-UI to make the popup resizable and draggable
+	$("#new_exam_popup_div").resizable();
+	$("#new_exam_popup_div").draggable({
+	    handle: ".popup-header"
+	});
+</script>
+

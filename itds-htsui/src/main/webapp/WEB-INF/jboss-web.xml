@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>/hts-management/</context-root>
+</jboss-web>

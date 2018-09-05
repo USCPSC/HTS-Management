@@ -1,0 +1,162 @@
+<!-- Details Tab Start -->
+<div style="padding-left: 20px;" ng-controller="inboxImporterController">
+	<div class="row col-lg-12 panel">
+		<div class="row col-lg-12 panel-body" style="padding-top: 10px;">
+			<h5>
+			<span class="row col-lg-3">
+				<strong>Entry Line:</strong>&nbsp;{{detail.selectedEntryLine.entryNumber}}<strong>&nbsp;/&nbsp;</strong>{{detail.selectedEntryLine.entryLineNumber}}
+			</span>
+			</h5>
+			<h5>
+			<span class="row col-lg-6">
+				<span class="row col-lg-6"><strong>Importer:</strong>&nbsp;{{detail.selectedEntryLine.importerName}}</span>
+				<span class="row col-lg-6"><strong>Importer Number:</strong>&nbsp;{{detail.selectedEntryLine.importerNumber}}</span>
+			</span>
+			</h5>
+		</div>
+		<div class="row col-lg-3 col-md-7 col-sm-7 panel-body" style="margin-left: 10px;">
+			<table class="row col-lg-3 col-md-3 col-sm-12 panel-body">
+				<tr>
+					<th></th>
+					<th>2 Years</th>
+					<th>2 Weeks</th>
+				</tr>
+				<tr>
+					<td>Total Entries</td>
+					<td style="text-align:right;">{{importerCounts.noEntries}}</td>
+					<td style="text-align:right;">{{importerCounts.noEntries2Wks}}</td>
+				</tr>
+				<tr>
+					<td>Entries Examined</td>
+					<td style="text-align:right;" ng-class="{{ activeCss('examlog') }}">
+						<a target="_new" ng-show="importerCounts.noExams"
+								href="#/examlog?action=importers_2yrs&impNo={{detail.selectedEntryLine.importerNumber}}"
+						 		ng-click="beforeLeavingCurrentPage($event);">
+							<span class="itds-toolbox-item">{{importerCounts.noExams}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noExams">{{importerCounts.noExams}}</span>
+					
+					</td>
+					<td style="text-align:right;" ng-class="{{ activeCss('examlog') }}">
+						<a target="_new" ng-show="importerCounts.noExams2Wks"
+								href="#/examlog?action=importers_2wks&impNo={{detail.selectedEntryLine.importerNumber}}"
+						 		ng-click="beforeLeavingCurrentPage($event);">
+							<span class="itds-toolbox-item">{{importerCounts.noExams2Wks}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noExams2Wks">{{importerCounts.noExams2Wks}}</span>
+					
+					</td>
+				</tr>
+				<tr>
+					<td>Entries Examined with Samples</td>
+					<td style="text-align:right;">
+						<a target="_new" ng-show="importerCounts.noExamsWithSamples"
+								href="#/examlog?action=importer_with_sample_2yrs&impNo={{detail.selectedEntryLine.importerNumber}}"
+						 		ng-click="beforeLeavingCurrentPage($event);">
+							<span class="itds-toolbox-item">{{importerCounts.noExamsWithSamples}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noExamsWithSamples">{{importerCounts.noExamsWithSamples}}</span>
+					</td>
+					<td style="text-align:right;">
+						<a target="_new" ng-show="importerCounts.noExamsWithSamples2Wks"
+								href="#/examlog?action=importer_with_sample_2wks&impNo={{detail.selectedEntryLine.importerNumber}}"
+						 		ng-click="beforeLeavingCurrentPage($event);">
+							<span class="itds-toolbox-item">{{importerCounts.noExamsWithSamples2Wks}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noExamsWithSamples2Wks">{{importerCounts.noExamsWithSamples2Wks}}</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Total Samples</td>
+					<td style="text-align:right;">{{importerCounts.noSamples}}</td>
+					<td style="text-align:right;">{{importerCounts.noSamples2Wks}}</td>
+				</tr>
+				<tr>
+					<td>Volative Samples</td>
+					<td style="text-align:right;">
+						<a ng-show="importerCounts.noSamplesViolative" href="" 
+							ng-click="displaySamples(detail.selectedEntryLine.importerNumber,'VIO');">
+							<span class="itds-toolbox-item">{{importerCounts.noSamplesViolative}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noSamplesViolative">{{importerCounts.noSamplesViolative}}</span>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Non-Volative Samples</td>
+					<td style="text-align:right;">
+						<a ng-show="importerCounts.noSamplesNonviolative" href="" 
+							ng-click="displaySamples(detail.selectedEntryLine.importerNumber,'NON');">
+							<span class="itds-toolbox-item">{{importerCounts.noSamplesNonviolative}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noSamplesNonviolative">{{importerCounts.noSamplesNonviolative}}</span>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Samples in Progress</td>
+					<td style="text-align:right;">
+						<a ng-show="importerCounts.noSamplesInProgress" href="" 
+							ng-click="displaySamples(detail.selectedEntryLine.importerNumber,'INP');">
+							<span class="itds-toolbox-item">{{importerCounts.noSamplesInProgress}}</span>
+						</a>
+							<span class="itds-toolbox-item" ng-hide="importerCounts.noSamplesInProgress">{{importerCounts.noSamplesInProgress}}</span>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</div>
+		<div class="row col-lg-3 col-md-7 col-sm-7 panel-body" style="margin-left: 10px;">
+			<table class="row col-lg-3 col-md-3 col-sm-12 panel-body">
+				<tr>
+					<th></th>
+					<th>Samples</th>
+					<th>Exams</th>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus7}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus7Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus7}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus6}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus6Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus6}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus5}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus5Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus5}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus4}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus4Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus4}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus3}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus3Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus3}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus2}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus2Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus2}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrMinus1}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus1Samples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrMinus1}}</td>
+				</tr>
+				<tr>
+					<td>{{importerCounts.fyqtrCurrent}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrCurrentSamples}}</td>
+					<td style="text-align:right;">{{importerCounts.noFyqtrCurrent}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="row col-lg-6 col-md-12 col-sm-12 panel-body">
+			<div id="chartdiv" style="height:100%;width:90%;text-align:left;"></div>
+		</div>
+	</div>
+</div>

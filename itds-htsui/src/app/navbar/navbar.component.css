@@ -1,0 +1,36 @@
+.navbar {
+    background-color:#F8F9F9;
+    padding-bottom: 0px;
+    border: 0px;
+}
+
+.dropdown {
+    padding-top: 25px;
+
+}
+
+.navbar .navbar-brand img {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 44px;
+    vertical-align: middle;
+  }
+
+  .navbar .dropdown img {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    width: 30px;
+    vertical-align: middle;
+   
+  }
+
+  .navbar .dropdown .dropdown-menu  {
+    background-color: #f9f9f9;
+   
+  }
+  
+  span {
+    font-family: 'Raleway', sans-serif;
+    
+  }

@@ -1,0 +1,33 @@
+<!--  begin readings details -->
+<div class="popup-header">
+		<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="cancel();">&times;</button>
+		<h4 class="modal-title">Product/Sample Readings</h4>
+		
+</div>
+
+<div>
+	<!--  begin products/readings -->
+	<div ng-repeat="item_i in sample.readingItems">
+		<strong>Sample Reading Item id: {{item_i.id}}</strong>
+		<table class="table" >
+			<tr>
+				<th>Reading Type</th>
+				<th>Reading Type Description</th>
+				<th>Value</th>
+			</tr>
+
+<!-- 			<tr ng-repeat="reading_i in item_i.readings" ng-show="isEnabledReading(reading_i);"> -->
+			<tr ng-repeat="reading_i in item_i.readings">
+				<td nowrap>{{ reading_i.readingType }}</td>
+				<td>{{ reading_i.readingTypeDescription }}</td>
+				<td>{{ reading_i.readingValue }}</td>
+			</tr>
+
+		</table>
+	</div>
+</div>
+		
+<div class="modal-footer" style="text-align: center">
+    <button type="button" class="btn btn-primary" data-dismiss="myModal" ng-click="showReadings(false);">Return to Product/Sample</button>
+</div> 
+<!--  end product/reading details -->

@@ -1,0 +1,44 @@
+<div class="container modal-dialog" id="inboxRecentUsrActDiv">
+<button type="button" class="close" aria-hidden="true" style="margin:2px;cursor:pointer;" ng-click="closeDialog()">&times;</button>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Recent User Actions (Last 100 actions)</h3>
+			<center>
+				<img src="img/spinner.gif" 
+							ng-if="src_scope.recentUserActionsQuerying"/>
+				<span ng-if="!src_scope.recentUserActionsQuerying && src_scope.recentUserActionsList.length==0"><h4>No record found!!</h4></span>
+			</center>
+				
+			<table 	class="itds-table-4 table table-bordered table-hover table-responsive" 
+				style="width:100%;" ng-if="src_scope.recentUserActionsList && src_scope.recentUserActionsList.length>0">
+					<thead>
+							<tr style="background-color:#D5F0C4;">
+								<th style="text-align: center;">
+										Time
+								</th>
+								<th style="text-align: center;">
+										Entry/Line
+								</th>
+								<th style="text-align: center;">
+										Old Action
+								</th>
+								<th style="text-align: center;">
+										New Action
+								</th>
+							</tr>	
+					</thead>
+					<tbody>
+							<tr ng-repeat="histRec in src_scope.recentUserActionsList" ng-click="inboxUserActClick(histRec)" style="cursor:pointer;">
+									<td>{{histRec.dataLastUpdateTimestamp}}</td>
+									<td>{{histRec.entryNumber}}/{{histRec.entryLineNumber}}</td>
+									<td></td>
+									<td>{{histRec.workflowStatus}}</td>
+							</tr>
+					</tbody>
+				</table>
+			
+			</div>
+	</div>
+
+</div>
+

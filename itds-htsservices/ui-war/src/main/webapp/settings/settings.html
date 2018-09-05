@@ -1,0 +1,20 @@
+<h4>System Settings</h4>
+
+<div class="settings-page">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+
+        <tr ng-repeat="prop in props">
+            <td>{{prop.name}}</td>
+            <td>
+                <input type="text" ng-model="prop.value" ng-change="prop.isChanged=true;">
+                <button ng-show="prop.isChanged" type="button" class="btn btn-primary"  ng-click="updateSysProp(prop)">Save</button>
+				<button ng-show="prop.isChanged" type="button" class="btn btn-default" ng-click="cancelSysProp(prop)">Cancel</button>
+                <!--<pre>{{prop| json}}</pre>-->
+            </td>
+        </tr>
+    </table>
+</div>

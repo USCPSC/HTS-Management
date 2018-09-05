@@ -1,0 +1,31 @@
+<!--  Inbox Filter layer  -->
+	<div class="col-md-12" style="text-align: right; padding:0px">
+	<a href="" class="boxclose" ng-click="filter.toggle()"></a>
+	<ul class="inbox-search" style="display:inline-block; list-style-type: none; text-align: left;" >
+		Filters:
+		<li ng-switch on = "filter.selectedOption.id">
+			<label for="filterBox" style="padding-right: 10px">filter: </label>
+			
+			<select name="filterColumn"
+			      ng-options="option.name for option in filter.inboxQuickSearchMenuOptions track by option.id"
+			      ng-model="filter.selectedOption">
+			 </select>
+		 
+		<input ng-switch-when="ENTRY" id="filterBox" placeholder="Enter Entry #" 
+		ng-model="filter.filterValue" type="text" style="width: 200px">
+		
+		<input ng-switch-when="PORT" id="filterBox" placeholder="Enter Port # or Name" 
+		ng-model="filter.filterValue" type="text" style="width: 200px">
+
+		<input ng-switch-when="INVESTIGATOR" id="filterBox" placeholder="investigator id" 
+		ng-model="filter.filterValue" type="text" style="width: 200px">
+		
+		<input ng-switch-when="SCORE_G" id="filterBox" placeholder="score" 
+		ng-model="filter.filterValue" type="text" style="width: 200px">
+
+		<input ng-switch-when="SCORE_L" id="filterBox" placeholder="score" 
+		ng-model="filter.filterValue" type="text" style="width: 200px">
+
+		<input type="button" class="btn btn-primary" value="Go" ng-click="filter.dofilter();">
+	</ul>
+	</div>

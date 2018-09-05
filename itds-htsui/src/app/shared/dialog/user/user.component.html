@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>User id</h2>
+<mat-dialog-content>
+  <div fxLayout="column">
+    <span *ngIf="data.error">{{data.error}}</span>
+    <mat-form-field>
+      <input matInput
+             [(ngModel)]="data.user"
+             placeholder="User Id">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-button
+          [mat-dialog-close]="data.user">Login</button>
+</mat-dialog-actions>

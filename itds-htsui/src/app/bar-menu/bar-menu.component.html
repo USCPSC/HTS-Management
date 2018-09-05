@@ -1,0 +1,16 @@
+<nav mat-tab-nav-bar aria-label="application navigation links" [backgroundColor]="tabNavBackground">
+  <!--clicker-->
+  <a mat-tab-link
+     [routerLink]="['/view']"
+     routerLinkActive #rla0="routerLinkActive"
+     [active]="rla0.isActive">
+    Current HTS
+  </a>
+  <a mat-tab-link
+     [disabled]="!isUpdatesEnabled()"
+     [routerLink]="['/diff']"
+     routerLinkActive #rla3="routerLinkActive"
+     [active]="rla3.isActive">
+    ITC Updates
+  </a>
+</nav>

@@ -1,0 +1,11 @@
+<label>
+  <ng-content></ng-content>
+  <span class="file-wrapper">
+    <input type="file"
+           class="files-upload-btn"
+           [multiple]="maxFilesCount > 1"
+           #spyFilesInputSpy
+           accept="{{acceptExtensions}}"
+           (change)="onChange(spyFilesInputSpy.files); spyFilesInputSpy.value=''">
+  </span>
+</label>

@@ -1,0 +1,23 @@
+.statContainer {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.statContainer{
+    padding-left: 40px;
+    padding-right:40px;
+}
+
+/deep/ .mat-tab-label{
+line-height: 40px !important;
+height: 50px ;
+color: #000000
+}
+
+/deep/ .mat-tab-header {
+color: #ccc;
+border-radius: 5px 5px 0px 0px;
+}
+/deep/ .mat-ink-bar {
+min-width: 120px;
+}

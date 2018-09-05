@@ -1,0 +1,50 @@
+<mat-card class="dashboard-card">
+  <mat-card-content>
+    <div class="spinner" *ngIf="isLoading() | async">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+    <div class="separator">
+      <div class="code-header">
+        CODE
+      </div>
+      <div style="flex: auto">
+        DESCRIPTION
+      </div>
+      <div title="Targeted" class="target">
+        T
+      </div>
+      <div title="Jurisdiction" [style.width]="getMargin()">
+        J
+      </div>
+    </div>
+    <div [style.height]="height">
+      <cdk-virtual-scroll-viewport [style.height]="height" [itemSize]="30" [bufferSize]="3">
+        <div *cdkVirtualFor="let node of observableData | async"
+             class="tree-node"
+             [ngClass]="node.getColor()">
+          <div class="code"
+               [style.padding-left.px]="node.level*10">
+            <button mat-icon-button
+                    *ngIf="node.expandable"
+                    (click)="expandIt(node)"
+                    [attr.aria-label]="'toggle ' + node.code">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{node.isExpanded ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            <button *ngIf="!node.expandable" mat-icon-button disabled></button>
+            <span class="code-num-style" (click)="edit(node)">
+              {{node.code}}
+            </span>
+            <button class="place-holder" *ngIf="!node.sunset && !node.modified" mat-icon-button disabled></button>
+            <mat-icon class="mat-icon-rtl-mirror pencil" *ngIf="node.modified">
+              edit
+            </mat-icon>
+            <mat-icon *ngIf="node.sunset" class="sunset" svgIcon="weather-sunset"></mat-icon>
+          </div>
+          <app-node-data [node]="node" [flat]="_flat"></app-node-data>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-card-content>
+</mat-card>

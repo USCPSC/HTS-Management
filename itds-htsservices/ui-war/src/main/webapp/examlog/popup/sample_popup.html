@@ -1,0 +1,52 @@
+<div id="sample_popup_div" class="container modal-dialog" ng-switch on="exam._editMode_">
+	
+	<!-- Details Tab Start -->
+	<div class="row">
+
+		<div class="col-md-12" ng-switch-when="EDIT">
+			<div ng-if="showContents == 'READING'">
+			  	<div ng-include="'./examlog/edit/exam_readings_edit.html'"></div>
+			</div>
+			
+			<div ng-if="showContents != 'READING'">					
+				<div ng-include="'./examlog/edit/exam_product_sample_edit.html'"></div>
+			</div>
+
+		</div>
+	
+		<div class="col-md-12" ng-switch-when="CREATE">
+<!-- 			<div ng-include="'./examlog/edit/exam_product_sample_edit.html'"></div> -->
+			<div ng-if="showContents == 'READING'">
+			  	<div ng-include="'./examlog/edit/exam_readings_edit.html'"></div>
+			</div>
+			
+			<div ng-if="showContents != 'READING'">					
+				<div ng-include="'./examlog/edit/exam_product_sample_edit.html'"></div>
+			</div>
+		</div>
+	
+ 		
+		<div class="col-md-12" ng-switch-when="VIEW">
+			<div ng-if="showContents == 'READING'">
+			  	<div ng-include="'./examlog/exam_readings.html'"></div>
+			</div>
+			
+			<div ng-if="showContents != 'READING'">					
+				<div ng-include="'./examlog/exam_product_sample.html'"></div>
+			</div>
+		</div>
+	</div> <!-- Details Tab End; modal-content-->
+
+</div> <!-- sample_popup_div  -->
+
+
+<script>
+	// use jQuery-UI to make the popup resizable and draggable
+	$("#sample_popup_div").resizable();
+	$("#sample_popup_div").draggable({
+	    handle: ".popup-header"
+	});
+</script>
+
+
+		

@@ -1,0 +1,28 @@
+<div id="sample_popup_div" class="container modal-dialog">
+
+	<div class="popup-header">
+			<button type="button" class="close" data-dismiss="myModal" aria-hidden="true" ng-click="cancel();">&times;</button>
+			<h4 class="modal-title">Importer Samples</h4>
+			
+	</div>
+	
+	<!-- Details Tab Start -->
+	<div class="row">
+		<div class="col-md-12">
+				<div ng-include="'./inbox/importer/importer_samples.html'"></div>
+		</div>
+	</div> <!-- Details Tab End; modal-content-->
+
+</div> <!-- sample_popup_div  -->
+
+
+<script>
+	// use jQuery-UI to make the popup resizable and draggable
+	$("#sample_popup_div").resizable();
+	$("#sample_popup_div").draggable({
+	    handle: ".popup-header"
+	});
+</script>
+
+
+		

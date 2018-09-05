@@ -1,0 +1,68 @@
+
+<div class="panel panel-default" id="inbox_exam_detail_div"> 
+
+<!-- <a href=""  ng-click="detail.isRowHidden(entryLine, $index)" data-toggle="tooltip" title="Close"> -->
+<!-- 	<span data-toggle="tooltip" title="Close" class="xglyphicon xglyphicon-fullscreen">x</span> -->
+<!-- </a> -->
+
+
+	<div class="panel-header">
+		<div class="row lb15" id="entry-header">
+		
+			<div class="col-md-2">
+				<h4 style="margin-top:0px">Entry Line Details</h4>
+			</div>
+			<div class="col-md-2">
+					<label>Entry/Line:</label>
+					{{detail.selectedEntryLine.entryNumber}}&nbsp;/&nbsp;{{detail.selectedEntryLine.entryLineNumber}}
+			</div>
+			<div class="col-md-4" ng-show="detail.entryLine[0].investigatorLastName">
+					<label>Investigator:</label>
+					&nbsp;{{detail.entryLine[0].investigatorLastName}},&nbsp;{{detail.entryLine[0].investigatorFirstName}} 
+			</div>
+			<div class="col-md-4" ng-show="!detail.entryLine[0].investigatorLastName">
+					<label>Investigator:</label>
+					&nbsp; 
+			</div>
+			<div class="col-md-4">
+					<label>HTS Description:</label>
+					{{detail.entryLine[0].htsDescription}}
+			</div>
+		
+			
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+
+			<div class=" col-md-12">
+				<nav id="inbox_examlog_detail_navbar" style="display:inline-block;" role="navigation">
+					<ul class="nav nav-tabs">
+						<li id="li_nav_entry_line_details"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Details'}" ng-click="showDetailTab('Details');">Details</a></li>
+						<li id="li_nav_entry_line_analysis"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Analysis'}" ng-click="showDetailTab('Analysis');">Analysis</a></li>
+						<li id="li_nav_entry_line_importer"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Importer'}" ng-click="showDetailTab('Importer');">Importer</a></li>
+						<li id="li_nav_entry_line_workflow"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Workflow'}" ng-click="showDetailTab('Workflow');">Workflow</a></li>
+						<li id="li_nav_entry_line_comments"><a href="" class="tab" ng-class="{'active':detailTabSelected === 'Comments'}" ng-click="showDetailTab('Comments');">Comments</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="animate-switch-container" ng-switch on="detailTabSelected">
+			<div class="animate-switch active" ng-switch-when="Details">
+				<div ng-include="'./inbox/entry_line_details.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Analysis">
+				<div ng-include="'./inbox/entry_line_analysis.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Importer">
+				<div ng-include="'./inbox/entry_line_importer.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Workflow">
+				<div ng-include="'./inbox/entry_line_workflow.html'"></div>
+			</div>
+			<div class="animate-switch active" ng-switch-when="Comments">
+				<div ng-include="'./inbox/entry_line_comments.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>

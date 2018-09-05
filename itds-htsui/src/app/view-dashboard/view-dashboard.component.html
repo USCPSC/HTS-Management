@@ -1,0 +1,12 @@
+<div fxFlex="none" fxLayout="row"
+     fxLayoutGap="10px" fxLayoutAlign="space-between">
+  <app-statistics fxFlex="1 1 48%" header="CPSC Current HTS"></app-statistics>
+  <app-actions fxFlex="1 1 48%" [link]="getReportLink()"></app-actions>
+</div>
+<app-filter fxFlex="none"
+            (onFilterChange)="onFilterChange($event)"
+            [filter]="ds.defaultFilter"
+            (onViewChange)="isFlatView($event)"
+            >
+</app-filter>
+<app-hts-tree [expand]="expand" [flatView]="flatView"></app-hts-tree>
