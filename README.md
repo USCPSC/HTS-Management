@@ -1,3 +1,9 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/USCPSC/HTS-Management/badge.svg?targetFile=itds-htsui%2Fpackage.json)](https://snyk.io/test/github/USCPSC/HTS-Management?targetFile=itds-htsui%2Fpackage.json)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/USCPSC/HTS-Management/badge.svg?targetFile=itds-htsui%2Fpom.xml)](https://snyk.io/test/github/USCPSC/HTS-Management?targetFile=itds-htsui%2Fpom.xml)
+
+
+
 Build and Deployment Instructions for HTS Source Code
 
 (I.) Pre-requisites
