@@ -16,8 +16,8 @@ export class TransitionDialogComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { state: BehaviorSubject<HtsState>; }) {
     this.sub = this.data.state.subscribe(
-      (data: HtsState) => {
-        this.state = data;
+      (state: HtsState) => {
+        this.state = state;
         if (this.state.stateTransition === TransitionEnum.uploadStart) {
           this.mode = 'determinate';
           if (this.state.percentage == 0) {

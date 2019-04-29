@@ -7,9 +7,14 @@
              [(ngModel)]="data.user"
              placeholder="User Id">
     </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             [(ngModel)]="data.passwd"
+             placeholder="Password">
+    </mat-form-field>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
   <button mat-button
-          [mat-dialog-close]="data.user">Login</button>
+          [mat-dialog-close]="data">Login</button>
 </mat-dialog-actions>

@@ -1,24 +1,38 @@
 <mat-card class="dashboard-card">
-  <mat-card-header>
-    <mat-card-title>
-      <h4 class="currentHtsTitle">
-        {{title}}
-      </h4>
-    </mat-card-title>
-  </mat-card-header>
+  <!--<mat-card-header>-->
+  <!--<mat-card-title>-->
+  <!--<h4 class="currentHtsTitle">-->
+  <!--{{title}}-->
+  <!--</h4>-->
+  <!--</mat-card-title>-->
+  <!--</mat-card-header>-->
   <mat-card-content>
-    <ng-container *ngIf="!details">
-      <span style="margin-left: 10px">All HTS Code: {{currTotalHTScodeCount}}</span>
-      <span>CPSC Jurisdiction: {{currentJurisdiction}}</span>
-      <span>Targeted in RAM: {{currentTargeted}}</span>
-    </ng-container>
-    <ng-container *ngIf="details">
-      <span style="margin-left: 10px">
-        All HTS Code: {{currTotalHTScodeCount}}(new) - {{currTotalHTScodeCount}}(retired)
-      </span>
-      <span>
-        CPSC Jurisdiction: {{currentJurisdiction}}(new) - {{currentJurisdiction}}(retired)
-      </span>
-    </ng-container>
+    <div fxLayout="column">
+      <div fxFlex="auto" fxLayout="row" fxLayoutAlign="space-between">
+        <div fxFlex="1 1 25%">CPSC Current HTS</div>
+        <div fxFlex="none">All HTS Code: {{stats.refActiveTotal}}</div>
+        <div fxFlex="none">CPSC Jurisdiction: {{stats.refActiveTotalJurisdictionTrue}}</div>
+        <div fxFlex="none">Targeted in RAM: {{stats.refActiveTotalTargetedTrue}}</div>
+      </div>
+      <div *ngIf="showSecond" fxFlex="auto" fxLayout="row" fxLayoutAlign="space-between">
+        <div fxFlex="1 1 25%">CPSC Work in Progress</div>
+        <div fxFlex="none">All HTS Code: {{stats.distinctNonRetireeTensInScratch}}</div>
+        <div fxFlex="none">CPSC Jurisdiction: {{stats.distinctNonRetireeJurisTensInScratch}}</div>
+        <div fxFlex="none">Targeted in RAM: {{stats.distinctNonRetireeTargetedTensInScratch}}</div>
+      </div>
+    </div>
+    <!--<ng-container *ngIf="!details">-->
+    <!--<span style="margin-left: 10px">All HTS Code: {{currTotalHTScodeCount}}</span>-->
+    <!--<span>CPSC Jurisdiction: {{currentJurisdiction}}</span>-->
+    <!--<span>Targeted in RAM: {{currentTargeted}}</span>-->
+    <!--</ng-container>-->
+    <!--<ng-container *ngIf="details">-->
+    <!--<span style="margin-left: 10px">-->
+    <!--All HTS Code: {{currTotalHTScodeCount}}(new) - {{currTotalHTScodeCount}}(retired)-->
+    <!--</span>-->
+    <!--<span>-->
+    <!--CPSC Jurisdiction: {{currentJurisdiction}}(new) - {{currentJurisdiction}}(retired)-->
+    <!--</span>-->
+    <!--</ng-container>-->
   </mat-card-content>
 </mat-card>

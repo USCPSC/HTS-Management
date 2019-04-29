@@ -80,6 +80,7 @@ export type HtsState = {
   username?: string;
   globalState?: GlobalStateEnum;
   stateTransition?: TransitionEnum;
+  stateTransitionTimestamp?: string;
   transitioningNow?: boolean;
   persistenceStatus?: PersistanceStatusEnum;
   persistenceProgressRemark?: string;
@@ -130,9 +131,13 @@ export type HtsRevertApplyResponse = {
   recordCount: number;
 };
 export type Statistics = {
-  refActiveTotal: number;
-  refActiveTotalJurisdictionTrue: number;
-  refActiveTotalTargetedTrue: number;
+  refActiveTotal: string;
+  refActiveTotalJurisdictionTrue: string;
+  refActiveTotalTargetedTrue: string;
+  refSunsetTotal?: string;
+  distinctNonRetireeTensInScratch?: string;
+  distinctNonRetireeJurisTensInScratch?: string;
+  distinctNonRetireeTargetedTensInScratch?: string;
 };
 
 export class Hts {

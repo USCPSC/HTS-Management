@@ -3,11 +3,5 @@
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
-	<context:component-scan base-package="com.ttw.itds.ui.config, com.ttw.itds.ui.audit" />
-
-<!--  , com.ttw.itds.ui.web.controller,	-->
-<!-- com.ttw.itds.ui.service.impl	-->
-	
-
-</beans>
+	<context:component-scan base-package="gov.cpsc.hts.itds.ui.config, gov.cpsc.itds.common" />
+	</beans>

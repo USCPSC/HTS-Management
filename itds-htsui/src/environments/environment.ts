@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   sso: false,
+  authentication: 'sso',
   backend: 'http://localhost:8080/htsservices-war/',
   ramUrl: 'http://localhost:8080/ui-war/',
   ruleEngine: 'http://localhost:8080/ram-war/'

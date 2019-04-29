@@ -18,7 +18,9 @@ public class SysPropertiesHandler {
   private static Cache cache = null;
   private static final String CACHE_NAME = "sysprops";
   static {
+    logger.debug("in static initializer");
     cache = cm.getCache(CACHE_NAME);
+    logger.debug("done with static initializer");
   }
 
   public static String getProperty(Enum key) {

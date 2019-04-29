@@ -11,7 +11,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com.ttw" additivity="false">
+	<logger name="gov.cpsc.hts" additivity="false">
 		<level value="info" />
 		<appender-ref ref="console" />
 	</logger>

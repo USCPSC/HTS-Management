@@ -1,21 +1,16 @@
 <ng-container *ngIf="!isReady2Upload()">
   <div fxFlex="none" fxLayout="row"
        fxLayoutGap="10px" fxLayoutAlign="space-between">
-    <app-statistics fxFlex="1 1 53%" header="CPSC Current HTS"></app-statistics>
-    <app-statistics fxFlex="1 1 43%" header="CPSC Work in Progress"
-                    [details]="true"></app-statistics>
+    <app-statistics fxFlex="1 1 48%" upload="true"></app-statistics>
+    <app-actions fxFlex="1 1 48%" [current]="false" [link]="getReportLink()"></app-actions>
   </div>
-  <div fxFlex="none" fxLayout="row"
-       fxLayoutGap="10px" fxLayoutAlign="space-between">
-    <app-filter fxFlex="1 1 53%"
-                [current]="false"
-                (onFilterChange)="onFilterChange($event)"
-                (onSourceChange)="onSourceChange($event)"
-                (onViewChange)="isFlatView($event)"
-                [source]="dataService.defaultUpdateSource"
-                [filter]="dataService.defaultFilter"></app-filter>
-    <app-actions fxFlex="1 1 43%" [current]="false" [link]="getReportLink()"></app-actions>
-  </div>
+  <app-filter fxFlex="none"
+              [current]="false"
+              (onFilterChange)="onFilterChange($event)"
+              (onSourceChange)="onSourceChange($event)"
+              (onViewChange)="isFlatView($event)"
+              [source]="dataService.defaultUpdateSource"
+              [filter]="dataService.defaultFilter"></app-filter>
   <app-hts-tree [current]="false" [flatView]="flatView"></app-hts-tree>
 </ng-container>
 <app-upload *ngIf="isReady2Upload()"

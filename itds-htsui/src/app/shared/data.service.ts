@@ -6,14 +6,13 @@ import {ConfirmationDialogComponent} from "app/shared/dialog/confirmation-dialog
 import {ExceptionDialogComponent} from "app/shared/dialog/exception-dialog/exception-dialog.component";
 import {ModalMessageComponent} from "app/shared/dialog/modal-message/modal-message.component";
 import {TransitionDialogComponent} from "app/shared/dialog/transition-dialog/transition-dialog.component";
-import {Filter, PersistanceStatusEnum, TransitionEnum} from "app/shared/hts.model";
+import {Filter, TransitionEnum} from "app/shared/hts.model";
+import {environment} from 'environments/environment';
 import {Observable, timer} from "rxjs";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {map, switchMap, tap} from "rxjs/operators";
-import {environment} from 'environments/environment';
 import {
   FilterEnum,
-  GlobalStateEnum,
   HtsEditResponse,
   HtsRevertApplyResponse,
   HtsState,
@@ -49,9 +48,9 @@ export class DataService {
   //   percentage: 0
   // });
   statistics = new BehaviorSubject<Statistics>({
-    refActiveTotal: 0,
-    refActiveTotalJurisdictionTrue: 0,
-    refActiveTotalTargetedTrue: 0
+    refActiveTotal: "",
+    refActiveTotalJurisdictionTrue: "",
+    refActiveTotalTargetedTrue: ""
   });
   // if globalState = ITC_UPLOAD_WIP, source can = DIFFS_FROM_UPLOAD for just diffs or  ITC_UPLOAD_WIP for whole HTS including diffs
   transitionDlgRef: MatDialogRef<TransitionDialogComponent> = null;
@@ -75,26 +74,6 @@ export class DataService {
     });
   }
 
-  showUploadErrors(state: HtsState): boolean {
-    const localStorage = window.localStorage;
-    if (state.lastUpload && state.lastUpload.result === "failure") {
-      const uploadTimestamp = localStorage.getItem('upload-timestamp');
-      if (uploadTimestamp) {
-        if (uploadTimestamp !== state.lastUpload.timestamp) {
-          // Show dialog because it is new upload
-          localStorage.setItem("upload-timestamp", state.lastUpload.timestamp);
-          this.showUploadExceptionDialog();
-          return true;
-        }
-      } else {
-        // show dialog, no timestamp saved
-        localStorage.setItem("upload-timestamp", state.lastUpload.timestamp);
-        this.showUploadExceptionDialog();
-        return true;
-      }
-    }
-    return false;
-  }
 
   startPollingState() {
     timer(0, 2000)
@@ -105,36 +84,22 @@ export class DataService {
         })
       )
       .subscribe((state: HtsState) => {
-          if (state.globalState !== GlobalStateEnum.transition) {
-            if (this.state.value.globalState === GlobalStateEnum.transition || this.transitionDlgRef) {
-              this.dialog.closeAll();
-              this.transitionDlgRef = null;
-              let showPopup = true;
-              if (state.lastUpload && state.lastUpload.result === "failure") {
-                const localStorage = window.localStorage;
-                const iStartedUpload = localStorage.getItem("upload-started") === 'true';
-                if (iStartedUpload) {
-                  showPopup = !this.showUploadErrors(state);
-                  localStorage.removeItem("upload-started");
-                }
-              }
-              if (showPopup) {
-                this.showNotification();
-              }
-            }
-          } else if (this.state.value.globalState !== state.globalState) {
-            this.showTransitionDialog();
-          }
-          this.state.next(state);
+          this.stateHandler(state);
         }
       );
   }
 
+  // stateTransitionTimestamp
+  // * stateTransition
+  // * Provides the most precise insight into the internal state of the HTS Services application. There are 12 possible
+  // * values, which cannot be overridden. They are: ENABLE_START, ENABLE_END, UPLOAD_START, UPLOAD_END, SAVE_START,
+  // * SAVE_END, REVERT_START, REVERT_END, FINALIZE_START, FINALIZE_END, and FINALIZE_STALL.
+
   isSSOEnabled() {
     return (!environment.production && environment.sso)
-      || (environment.production && location.host === 'EXAMPLE_HOST')
-      || (environment.production && location.host === 'EXAMPLE_HOST')
-      || (environment.production && location.host === 'EXAMPLE_HOST');
+      || (environment.production && location.host === 'ramtest.cpsc.gov')
+      || (environment.production && location.host === 'ram.cpsc.gov')
+      || (environment.production && location.host === 'ramqa.cpsc.gov');
   }
 
   resetCurrent() {
@@ -182,19 +147,19 @@ export class DataService {
       });
   }
 
-  // On Current HTS tab:
-  // if globalState = CURRENT_HTS_WIP,  then source must = CURRENT_HTS_WIP
-  // if globalState = anything else (e.g. FINALIZE_NO_WIP, ITC_UPLOAD_WIP) then source should = CURRENT
-
-  // On ITC Upload tab:
-  // if globalState = FINALIZE_NO_WIP or CURRENT_HTS_WIP, no get request allowed for ITC Upload
-
   getDiffReport(whichDiffs: String) {
     return this._http.get(environment.backend + 'getcsvreport/itc_upload_wip/no_filter',
       {withCredentials: true});
     //    return this._http.get('assets/hts_cloud_full_itc_output_201803110044.json');
 
   }
+
+  // On Current HTS tab:
+  // if globalState = CURRENT_HTS_WIP,  then source must = CURRENT_HTS_WIP
+  // if globalState = anything else (e.g. FINALIZE_NO_WIP, ITC_UPLOAD_WIP) then source should = CURRENT
+
+  // On ITC Upload tab:
+  // if globalState = FINALIZE_NO_WIP or CURRENT_HTS_WIP, no get request allowed for ITC Upload
 
   postFile(fileToUpload: File) {
     const endpointUrl = environment.backend + 'upload';
@@ -213,6 +178,14 @@ export class DataService {
     return this._http.get(environment.backend + 'uploadprogress', {withCredentials: true});
   }
 
+  enableCurrentEdit() {
+    this._http.get(environment.backend + 'enableeditingcurrent', {withCredentials: true})
+      .subscribe((resp: HtsEditResponse) => {
+        console.log("Edit enabled");
+      });
+    this.showTransitionDialog();
+  }
+
 // {"persistenceStatus": "UNDERWAY",
 // "persistenceProgressRemark": "Persistence is underway.",
 // "percentage": "27",
@@ -221,14 +194,6 @@ export class DataService {
 // "progressLastCalculated": "2018-05-18 20:03:50",
 
 // { "editingCurrentIsEnabled": "true", "globalState": "CPSC_CURRENT_WIP" }
-
-  enableCurrentEdit() {
-    this._http.get(environment.backend + 'enableeditingcurrent', {withCredentials: true})
-      .subscribe((resp: HtsEditResponse) => {
-        console.log("Edit enabled");
-      });
-    this.showTransitionDialog();
-  }
 
   abortChanges() {
     this.openDialog("Abort Changes Confirm", "Are you sure?")
@@ -290,6 +255,53 @@ export class DataService {
       + htsCode + '&source=' + source, {withCredentials: true})
       .pipe(map((res: any) => <string>res.cpscDescription));
   }
+
+  private stateHandler(state: HtsState) {
+    const localStorage = window.localStorage;
+    if (state.stateTransition.endsWith("START")) {
+      const timeStarted = localStorage.getItem(state.stateTransition);
+      if (!timeStarted || timeStarted !== state.stateTransitionTimestamp) {
+        // close all dialogs except Transitiondialog
+        this.dialog.openDialogs.forEach((d: MatDialogRef<any>) => {
+          if (d !== this.transitionDlgRef) {
+            d.close();
+          }
+        });
+        // show transition dialog
+        this.showTransitionDialog();
+        localStorage.setItem(state.stateTransition, state.stateTransitionTimestamp);
+      }
+    } else if (state.stateTransition.endsWith("END")) {
+      const timeEnded = localStorage.getItem(state.stateTransition);
+      if (!timeEnded || timeEnded !== state.stateTransitionTimestamp) {
+        // show notification dialog
+        this.dialog.closeAll();
+        this.transitionDlgRef = null;
+        if (state.stateTransition === TransitionEnum.uploadEnd
+          && state.lastUpload && state.lastUpload.result === "failure"
+          && localStorage.getItem("upload-started") === 'true') {
+          this.showUploadExceptionDialog();
+          localStorage.removeItem("upload-started");
+        } else {
+          this.showNotification();
+        }
+        localStorage.setItem(state.stateTransition, state.stateTransitionTimestamp);
+        this.getStatistics();
+      }
+    }
+    this.state.next(state);
+  }
+
+  // http://ram2qass01:8080/htsservices-war/get?root=1704903550&maxdepth=0&includelongdesc=true
+// { "htsCode": "1704903550",
+// "htsCodeType": "10",
+// "htsDescription": "Other",
+// "isItcDescription": "true",
+// "cpscDescription": "Sugars and sugar confectionery:Sugar confectionery (including white chocolate), not containing cocoa: Other: Confections or sweetmeats ready for consumption: Other: Other: Put up for retail sale: Other",
+// "jurisdiction": "true",
+// "targeted": "false",
+// "changeStatus": "none",
+// "notes": "",
 
   private showTransitionDialog() {
     if (this.transitionDlgRef === null) {

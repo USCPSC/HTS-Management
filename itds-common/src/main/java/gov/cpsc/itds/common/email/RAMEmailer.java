@@ -14,35 +14,37 @@ public class RAMEmailer {
   private static final Logger logger = LoggerFactory.getLogger(RAMEmailer.class);
 
   public String sendEmail(String toEmailAddress, String subject, String body, boolean sendHtml)
-      throws EmailException {
-    logger.debug("toEmailAddress={}, subject={}", toEmailAddress, subject);
-    String rtn;
-    Email email;
-    if (sendHtml) {
-      email = new HtmlEmail();
-    } else {
-      email = new SimpleEmail();
-    }
-    email.setHostName(PropertiesHandler.getProperty(RAMEmailPropertyKeys.EMAIL_HOSTNAME));
-    email.setSmtpPort(PropertiesHandler.getIntProperty(RAMEmailPropertyKeys.EMAIL_PORT));
-    email.setFrom(PropertiesHandler.getProperty(RAMEmailPropertyKeys.FROM_EMAIL));
-    email.setSubject(subject);
-    email.setMsg(body);
-    email.addTo(toEmailAddress);
+	      throws EmailException {
+	    logger.debug("toEmailAddress={}, subject={}", toEmailAddress, subject);
+	    String rtn;
+	    Email email;
+	    if (sendHtml) {
+	      email = new HtmlEmail();
+	    } else {
+	      email = new SimpleEmail();
+	    }
+		String[] toEmails = toEmailAddress.split(",");
+	    email.setHostName(PropertiesHandler.getProperty(RAMEmailPropertyKeys.EMAIL_HOSTNAME));
+	    email.setSmtpPort(PropertiesHandler.getIntProperty(RAMEmailPropertyKeys.EMAIL_PORT));
+	    email.setFrom(PropertiesHandler.getProperty(RAMEmailPropertyKeys.FROM_EMAIL));
+	    email.setSubject(subject);
+	    email.setMsg(body);
+	    email.addTo(toEmails);
 
-    String msgId = null;
+	    String msgId = null;
 
-    msgId = email.send();
+	    msgId = email.send();
 
-    logger.info("Email sent. msgId={}", msgId);
-    rtn =
-        "{\"MessageId\":\""
-            + msgId
-            + "\",\"toEmailAddress\":\""
-            + toEmailAddress
-            + "\",\"subject\":\""
-            + subject
-            + "\"}";
-    return rtn;
-  }
+	    logger.info("Email sent. msgId={}", msgId);
+	    rtn =
+	        "{\"MessageId\":\""
+	            + msgId
+	            + "\",\"toEmailAddress\":\""
+	            + toEmailAddress
+	            + "\",\"subject\":\""
+	            + subject
+	            + "\"}";
+	    return rtn;
+	  }
+  
 }

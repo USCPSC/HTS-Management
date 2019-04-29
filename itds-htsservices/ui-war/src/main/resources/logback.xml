@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- LOG_LOCATION is system property -->
+    <include file="${LOG_LOCATION}/logback-htsservices.xml" />
+</configuration>

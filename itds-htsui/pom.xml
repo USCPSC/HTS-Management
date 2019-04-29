@@ -213,7 +213,6 @@
                   <arguments>install</arguments>
                 </configuration>
               </execution>
-
               <execution>
                 <!--<id>yarn build_prod</id>-->
                 <id>npm build_prod</id>

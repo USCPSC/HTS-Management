@@ -1,32 +1,41 @@
 import {Component, Input, OnDestroy} from '@angular/core';
+import {filter} from "rxjs/operators";
 import {Subscription} from "rxjs/Subscription";
 import {DataService} from "../shared/data.service";
-import {Statistics} from "../shared/hts.model";
+import {GlobalStateEnum, HtsState, SourceEnum, Statistics} from "../shared/hts.model";
 
 @Component({
-  selector: 'app-statistics[header]',
+  selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent implements OnDestroy {
-  @Input("header") title: string;
-  @Input() details = false;
-  subscription: Subscription;
-  currTotalHTScodeCount: number;
-  currentTargeted: number;
-  currentJurisdiction: number;
+  @Input() upload = false;
+  sub1: Subscription;
+  sub2: Subscription;
+  stats: Statistics;
+  showSecond = false;
 
   constructor(public dataService: DataService) {
-    this.subscription = this.dataService.statistics.subscribe(
+    this.sub1 = this.dataService.statistics.subscribe(
       (data: Statistics) => {
-        this.currTotalHTScodeCount = data.refActiveTotal;
-        this.currentJurisdiction = data.refActiveTotalJurisdictionTrue;
-        this.currentTargeted = data.refActiveTotalTargetedTrue;
+        this.stats = data;
+      });
+    this.sub2 = this.dataService.state
+      .pipe(
+        filter(state => state.globalState !== undefined)
+      ).subscribe((state: HtsState) => {
+        if(this.upload){
+          this.showSecond = state.globalState === GlobalStateEnum.upload;
+        } else {
+          this.showSecond = state.globalState === GlobalStateEnum.edit;
+        }
       });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }
