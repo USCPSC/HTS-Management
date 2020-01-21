@@ -10,7 +10,7 @@
 	<!-- <name>itds-hts-services</name> -->
 	<properties>
 		<java.version>11</java.version>
-		<spring.version>5.1.2.RELEASE</spring.version>
+		<spring.version>5.2.3.RELEASE</spring.version>
 		<joda-time.version>2.10.1</joda-time.version>
 		<c3p0.version>0.9.5.2</c3p0.version>
 		<hibernate.version>5.3.7.Final</hibernate.version>
